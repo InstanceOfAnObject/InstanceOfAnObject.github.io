@@ -1,0 +1,26 @@
+/* style the custom tags list */
+ul {
+	&.tag_list{
+		display: block;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+
+		li {
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px; /* future proofing */
+			-khtml-border-radius: 5px; /* for old Konqueror browsers */
+
+			display: block;
+			float: left;
+			margin: 0 5px 0 0;
+			padding: 2px 6px;
+			background-color: #dcdcdc;
+
+			a { 
+				color: #000;
+			}
+		}
+	}
+}
