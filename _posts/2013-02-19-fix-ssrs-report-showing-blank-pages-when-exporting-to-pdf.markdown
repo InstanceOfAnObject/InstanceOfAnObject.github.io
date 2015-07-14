@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Fix SSRS Report Showing Blank Pages When Exporting To PDF"
+title:  "Fix SSRS PDF Blank Pages"
 date:   2013-02-19 17:29:00
 categories: blog
 tags:
