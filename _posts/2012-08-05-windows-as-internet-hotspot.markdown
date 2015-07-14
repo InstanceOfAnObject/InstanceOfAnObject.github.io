@@ -14,7 +14,7 @@ This is vacations time and if you buy a USB pen you probably could use the habil
 Usually you think about a hardware router that supports USB pens but that's usually too expensive, or at least more expensive than FREE! :)
 
 The solution is to use [Virtual Router](http://virtualrouter.codeplex.com/ "Virtual Router"). 
-<img src="/assets/images/virtualrouter.jpg" />
+<img src="/assets/blog/2012-08-05-windows-as-internet-hotspot/screenshot1.jpg" />
 
 As you can see the configuration is straight forward:
 
