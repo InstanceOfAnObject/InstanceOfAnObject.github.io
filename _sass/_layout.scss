@@ -8,6 +8,10 @@
 
     // Positioning context for the mobile navigation icon
     position: relative;
+    
+    a.site-title {
+        padding-right: 85px;    // make space for the nav in mobile devices
+    }
 }
 
 .site-title {
@@ -38,6 +42,11 @@
         // Gaps between nav items, but not on the first one
         &:not(:first-child) {
             margin-left: 20px;
+        }
+        
+        // mark the link as the current page
+        &.selected {
+            border-bottom: solid 3px #83C1DD;
         }
     }
 

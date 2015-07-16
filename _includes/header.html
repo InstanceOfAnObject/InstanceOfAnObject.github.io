@@ -16,10 +16,10 @@
       </a>
 
       <div class="trigger">
-        <a class="page-link" href="/">Home</a>
-        <a class="page-link" href="/blog">Blog</a>
-        <a class="page-link" href="/projects">Projects</a>
-        <a class="page-link" href="/about">About</a>
+        <a class="page-link {% if page.categories contains 'home' %}selected{% endif %}" href="/">Home</a>
+        <a class="page-link {% if page.categories contains 'blog' %}selected{% endif %}" href="/blog">Blog</a>
+        <a class="page-link {% if page.categories contains 'projects' %}selected{% endif %}" href="/projects">Projects</a>
+        <a class="page-link {% if page.categories contains 'about' %}selected{% endif %}" href="/about">About</a>
         {% for page in site.pages %}
           {% if page.title %}
           <!-- <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a> -->
