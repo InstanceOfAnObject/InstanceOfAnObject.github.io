@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Fix SSRS PDF Blank Pages</title>
-  <meta name="description" content="The problemYou’re designing a report on SSRS. Everything looks good until you export it to PDF and you realize that every other page appears blank.">
+  <title>Making a JQuery UI Datepicker Read Only</title>
+  <meta name="description" content="To make this post clear, by ReadOnly I mean really READ ONLY, no input allowed whatsoever.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://www.instanceofanobject.com/blog/2013/02/19/fix-ssrs-report-showing-blank-pages-when-exporting-to-pdf.html">
+  <link rel="canonical" href="http://www.instanceofanobject.com/blog/2011/05/25/making-a-jqueryui-datepicker-read-only.html">
   <link rel="alternate" type="application/rss+xml" title="Instance Of An Object" href="http://www.instanceofanobject.com/feed.xml" />
 </head>
 
@@ -151,15 +151,17 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Fix SSRS PDF Blank Pages</h1>
+    <h1 class="post-title">Making a JQuery UI Datepicker Read Only</h1>
     <div class="post-meta">
-    	Feb 19, 2013
+    	May 25, 2011
 
 	    <ul class="tag_list">
 	      
-	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/ssrs">ssrs</a></li>
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/javascript">javascript</a></li>
 	      
-	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/reporting">reporting</a></li>
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/jquery">jquery</a></li>
+	      
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/jquery-ui">jquery-ui</a></li>
 	      
 	    </ul>
     </div>
@@ -167,29 +169,49 @@
   </header>
 
   <article class="post-content">
-    <h2 id="the-problem">The problem</h2>
-<p>You’re designing a report on SSRS. Everything looks good until you export it to PDF and you realize that every other page appears blank.</p>
+    <p>To make this post clear, by ReadOnly I mean really READ ONLY, no input allowed whatsoever.</p>
 
-<p>If this is your problem, read on!</p>
+<h3 id="datepicker-default-behavior">Datepicker default behavior</h3>
+<p>This one seemed easy at first but it isn’t just because by design, setting the input textbox to readonly the widget will understand it as if we just wanted to limit the user to choose a date from the popup, disallowing any input text.</p>
 
-<h2 id="the-solution">The solution</h2>
-<p>The solution is plain simple and rational but if you’re already dealing with a complex report maybe you already switched off your rational part of the brain.</p>
+<p>What I want here is to block any way of the user to change the textbox value, either from the calendar popup or by direct input on the textbox.<br /></p>
 
-<p>The idea basically is:</p>
+<h3 id="option-1-disable-textbox">Option 1: Disable Textbox</h3>
+<table style="text-align: center; width: 100%px;"><tbody>
+<tr><td style="background-color: gainsboro;" width="50%"><b>The good</b></td><td style="background-color: gainsboro;" width="50%"><b>The bad</b></td></tr>
+<tr><td>Works!</td><td>Grays out the control to make it look disabled</td></tr>
+</tbody></table>
 
-<div class="highlight"><pre><code class="language-text" data-lang="text">[Body width] &lt;= [Report Width]-[Report Left Margin]-[Report Right Margin]</code></pre></div>
+<p>This would be a quick solution by just disable the textbox but it kind of shades the control and I want it to display its value with the same appearance as the other textboxes. Not aproved!</p>
 
-<p>So do the following:</p>
+<h3 id="option-2-bend-the-control">Option 2: Bend the control</h3>
+<p>This datepicker widget has a lot of options, we just have to find a way to use them in our favor to achieve this “unsupported” behavior.</p>
 
-<ol>
-  <li>Go to Report properties</li>
-  <li>Take note of the Width and the left and right margin values</li>
-  <li>Go to the design view and select Body</li>
-  <li>Take note of the Body width</li>
-  <li>Do your math with the above formula, adjust as needed and it should be fine!</li>
-</ol>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">&quot;txtDate&quot;</span> <span class="na">readonly=</span><span class="s">&quot;readonly&quot;</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="nt">/&gt;</span>
 
-<p>Cheers!</p>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+   <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#txtDate&#39;</span><span class="p">).</span><span class="nx">datepicker</span><span class="p">(</span>
+     <span class="p">{</span>
+        <span class="nx">beforeShow</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">input</span><span class="p">,</span> <span class="nx">inst</span><span class="p">)</span> 
+        <span class="p">{</span> <span class="nx">inst</span><span class="p">.</span><span class="nx">dpDiv</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;&lt;div style=&quot;display: none;&quot;&gt;&lt;/div&gt;&#39;</span><span class="p">);</span> <span class="p">}</span>
+     <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nt">&lt;/script&gt;</span></code></pre></div>
+
+<p>What did I do?<br />
+On the Textbox you can see that I made it ReadOnly, but as I said, this alone still lets the user change the date from the calendar popup.<br />
+To block the calendar popup I’m replacing it it an empty DIV element and to avoid unhandled complications I’m styling it as display: none.</p>
+
+<p>With this workaround the datepicker still thinks is showing the popup but infact nothing happens.</p>
+
+<p>This is kind of tricky but is pretty easy to do and works very well on all browsers.</p>
+
+<h3 id="my-recomendation-to-jquery-ui-team">My recomendation to JQuery UI Team</h3>
+<p>This would be so much easier if we could only pass something like:<br />
+<em>showOn: “never”</em></p>
 
   </article>
 
