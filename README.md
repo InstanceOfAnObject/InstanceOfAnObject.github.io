@@ -12,7 +12,24 @@ I'll be using this page to document my experience and maybe help someone else.
 
 
 ## Plugins
-### Plugins under GitHub
+### Plugins under GitHub Pages
+Due to security restrictions, GitHub only supports a (very) limited number of Jekyll plugins.  
+Everything else zou might have in zour _plugins folder will be ignored.
+
+This means that everything works fine on your dev machine but once you deploy do GitHub Pages you'll loose functionality.  
+To solve this I decided to take advantage of git branches and the .nojekyll file.
+
+What I ended up doing was:
+
+* create a 'dev' branch where I have the full Jekyll project
+* empty the 'master' branch and copy the contents of the dev branch _site folder
+* add the .nojekyll file in the root of the 'master' branch to tell GitHub that this is not a Jekyll site
+and that's it.
+
+To automate things I've created a deploy.sh bash file in the 'dev' branch.
+
+This is a user site. In case you have a repository site, do the same but for the gh-pages branch.
+
 ### Taking the most out of Tags
 
 ## Using Jekyll on Cloud9
