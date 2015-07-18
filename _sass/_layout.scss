@@ -48,6 +48,11 @@
         &.selected {
             border-bottom: solid 3px #83C1DD;
         }
+        
+        &:hover {
+            text-decoration: none;
+            border-bottom: solid 3px #dcdcdc;
+        }
     }
 
     @include media-query($on-palm) {
