@@ -11,6 +11,7 @@
     
     a.site-title {
         padding-right: 85px;    // make space for the nav in mobile devices
+        margin-top: 10px;
     }
 }
 
@@ -247,4 +248,13 @@
             font-size: 18px;
         }
     }
+}
+
+
+
+/* AlexCode Custom */
+img.profile-picture {
+  border-radius: 100%;
+  overflow: hidden;
+  border: 3px solid #fff;
 }

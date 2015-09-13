@@ -1,13 +1,16 @@
 ---
-layout: page
+layout: default
 title: About
 categories: about
 permalink: /about/
 ---
 
+<h1>
+	<img class="profile-picture" src="http://www.gravatar.com/avatar/eada57c6441e30a5337fbb1e877216cb" />
+	<div style="float: right;">About me</div>
+</h1>
+
 <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-
-
 
 
 

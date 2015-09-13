@@ -1,0 +1,28 @@
+{
+    "name": "Alexandre Simoes",
+    "nickname": "AlexCode",
+    contacts: {
+        "email": "mail@alexcode.com",
+        "facebook": "https://www.facebook.com/instanceofanobject",
+        "googleplus": "https://plus.google.com/+AlexandreSimoes77",
+        "linkedin": "https://ch.linkedin.com/in/alexcode"
+    },
+    coderepos: {
+        "github": "https://github.com/InstanceOfAnObject",
+        "plunker": "http://plnkr.co/users/InstanceOfAnObject",
+        "jsfiddle": "http://jsfiddle.net/user/AlexCode/fiddles/"
+    },
+    
+    "summary": "",
+    
+    "experience": [
+        {
+            "role": "",
+            "where": "",
+            "period": { "from": "", "to": "" },
+            "description": "",
+            "technologies": []
+        }
+    ]
+    
+}
