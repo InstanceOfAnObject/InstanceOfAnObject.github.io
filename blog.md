@@ -10,7 +10,9 @@ permalink: /blog/
 
   <ul class="post-list">
     {% for post in site.posts %}
-    {% include post_listitem.html param="post" variable-param=post %}
+      {% if post.categories contains 'blog'  %}
+        {% include post_listitem.html param="post" variable-param=post %}
+      {% endif %}
     {% endfor %}
   </ul>
 

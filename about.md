@@ -10,64 +10,13 @@ permalink: /about/
 	<div style="float: right;">About me</div>
 </h1>
 
-<div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
+Hi all, my name is Alexandre Simoes but you can call me Alex.  
+I'm originally from Portugal but I moved to Switzerland (French part) in 2012.
 
+I'm a software developer with a strong Microsoft background but that never inhibited me from working with other technologies. My tool belt holds technologies that include Windows and Linux, .Net Framework and JAVA, thin and thick clients, Front-End and Back-End environments, full custom and product customization solutions.
 
+I'm reviving this blog out of the need of sharing my ideas, problems, frustrations and successes.
 
-
-
-
-
-<script type="text/javascript" src="/assets/scripts/canvasjs.min.js"></script>
-<script type="text/javascript">
-	window.onload = function () {
-		var currentYear = new Date().getYear(),
-		    getYearSpan = function(from, to){
-		        if(!to){
-		            return new Date().getYear() - new Date(from.y,from.m,from.d).getYear();
-		        } else {
-		            return new Date().getYear(to.y,to.m,to.d) - new Date(from.y,from.m,from.d).getYear();
-		        }
-		    },
-		    chart = new CanvasJS.Chart("chartContainer", {
-
-			title:{
-				text:"Technology experience"				
-
-			},
-            animationEnabled: true,
-			axisX:{
-				interval: 1,
-				gridThickness: 0,
-				labelFontSize: 10,
-				labelFontStyle: "normal",
-				labelFontWeight: "normal",
-				labelFontFamily: "Lucida Sans Unicode"
-
-			},
-			axisY2:{
-				interlacedColor: "rgba(1,77,101,.2)",
-				gridColor: "rgba(1,77,101,.1)"
-
-			},
-
-			data: [
-			{     
-				type: "bar",
-                name: "companies",
-				axisYType: "secondary",
-				color: "#014D65",				
-				dataPoints: [
-    				{y: getYearSpan({y:2002,m:11,d:1}), label: ".Net Framework" },
-    				{y: getYearSpan({y:2002,m:11,d:1}), label: "T-SQL" },
-    				{y: getYearSpan({y:2012,m:08,d:1}, {y:2015,m:01,d:1}), label: "JAVA" }
-				]
-			}
-			
-			]
-		});
-
-    chart.render();
-}
-</script>
+I like to learn, and the best way I’ve found is to do it by teaching.  
+I’m an active contributor at <a href="http://www.experts-exchange.com/members/AlexCode.html">Experts-Exchange</a> and I also organize presentations and trainings.
