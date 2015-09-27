@@ -323,6 +323,30 @@ img.profile-picture {
   overflow: hidden;
   border: 3px solid #fff; }
 
+/* Home Page Area Blocks */
+.home .header {
+  padding: 5px;
+  border: solid 1px #dcdcdc;
+  background-color: #f00; }
+.home .body {
+  padding: 5px; }
+  .home .body .post-link {
+    font-size: 1rem; }
+.home .col-wrapper {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+.home .col {
+  float: left;
+  margin-bottom: 15px;
+  width: 50%;
+  border: dashed 0px #f00;
+  box-sizing: border-box; }
+@media screen and (max-width: 600px) {
+  .home .col {
+    float: none;
+    width: 100%; } }
+
 /**
  * Syntax highlighting styles
  */
