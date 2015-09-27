@@ -5,7 +5,7 @@ categories: projects
 permalink: /projects/
 ---
 
-<h2>My projects</h2>
+<h2>Projects</h2>
 
 <ul class="post-list">
 {% for post in site.posts %}
