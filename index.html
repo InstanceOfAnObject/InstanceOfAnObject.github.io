@@ -3,8 +3,15 @@ layout: default
 categories: home
 ---
 
-<div class="home">
+  <h1 class="page-heading">Latest</h1>
 
-
+  <ul class="post-list">
+    {% for post in site.posts limit:10 %}
+      {% include post_listitem.html param="post" variable-param=post %}
+    {% endfor %}
+  </ul>
+  
+  <a href="/blog">More blog posts</a>
+  <a href="/projects">More Projects</a>
 
 </div>

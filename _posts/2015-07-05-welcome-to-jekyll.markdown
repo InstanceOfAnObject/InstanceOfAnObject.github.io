@@ -6,22 +6,24 @@ categories: blog
 tags:
 - jekyll
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+"So, I've decided to take my work back underground"... and start using Jekyll.
 
-Jekyll also offers powerful support for code snippets:
+It's been a while since I messed up my Blogger theme and even longer since the last time I actually posted something on my blog.  
+As I decided to come back to writting, I've set my self up to find an alternative to Blogger.
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+My first option was [Ghost](https://ghost.org/).  
+For whoever doesn't know about it, [Ghost](https://ghost.org/) is a publishing platform based on [node.js](https://nodejs.org/en/) and (Express)[http://expressjs.com/]. 
+The community is very active and the product features are pretty impressive.  
+The problem is that I don't intend to collaborate or do anything else than put some words out there.
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
+All my content here is pretty static so I didn't see the use of a database or any other more advanced features.
 
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+I want to write and publish. Done.
+
+That's when I found [Jekyll](http://jekyllrb.com/).  
+Actually to put it correctly, I found it through Github when I was reading about what it supports as publising platforms for project and user pages.
+
+Jekyll it self is not a blogging platform, is "simply" an HTML generator.  
+What you get as a publisher is a set of static HTML files that you can just deploy wherever you want.  
+In my case I'm using Github pages and it works just fine.

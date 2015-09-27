@@ -258,3 +258,43 @@ img.profile-picture {
   overflow: hidden;
   border: 3px solid #fff;
 }
+
+/* Home Page Area Blocks */
+.home {
+    
+    .header {
+        padding: 5px;
+        border: solid 1px #dcdcdc;
+        background-color: #f00;
+    }
+    .body {
+        padding: 5px;
+        
+        .post-link {
+            font-size: 1rem;
+        }
+    }
+    
+    .col-wrapper {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+    }
+    
+    .col {
+        float: left;
+        margin-bottom: $spacing-unit / 2;
+        
+        width: 50%;
+        border: dashed 0px #f00;
+        box-sizing: border-box;
+    }
+    
+    @include media-query($on-palm) {
+        .col {
+            float: none;
+            width: 100%;
+        }
+    }
+    
+}
