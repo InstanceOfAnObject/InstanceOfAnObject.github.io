@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>.Net Platform Now On Android</title>
-  <meta name="description" content="    I’m glad to see that Project Mono is alive and kicking… Hard!Their latest achievement is to allow Microsoft .net based software to run on Android.Have a ...">
+  <title>Verify country Google block</title>
+  <meta name="description" content="The problemCountries like China block web traffic from certain domains.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://www.instanceofanobject.com/blog/2011/01/07/net-platform-now-on-android.html">
+  <link rel="canonical" href="http://www.instanceofanobject.com/blog/2015/10/12/verify-country-google-block.html">
   <link rel="alternate" type="application/rss+xml" title="Instance Of An Object" href="http://www.instanceofanobject.com/feed.xml" />
 
   <link rel="stylesheet" href="/assets/images/autreplanete_icons/social_icons/CSS_sprite/css/apico-sprites.css" />
@@ -233,17 +233,17 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">.Net Platform Now On Android</h1>
+    <h1 class="post-title">Verify country Google block</h1>
     <div class="post-meta">
-    	Jan 7, 2011
+    	Oct 12, 2015
 
 	    <ul class="tag_list">
 	      
-	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/mono project">mono project</a></li>
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/security">security</a></li>
 	      
-	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/android">android</a></li>
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/web development">web development</a></li>
 	      
-	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/.net">.net</a></li>
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/google">google</a></li>
 	      
 	    </ul>
     </div>
@@ -251,16 +251,94 @@
   </header>
 
   <article class="post-content">
-    <div class="separator" style="clear: both; text-align: center;">
- <a href="/assets/blog/2011-01-07-net-platform-now-on-android/monodroid.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;">
-  <img border="0" src="/assets/blog/2011-01-07-net-platform-now-on-android/monodroid.png" />
- </a>
-</div>
-<p>I’m glad to see that Project Mono is alive and kicking… Hard!<br />
-<br />
-Their latest achievement is to allow Microsoft .net based software to run on Android.<br />
-<br />
-Have a look: <a href="http://www.monodevelop.com/">MonoDevelop</a></p>
+    <h2 id="the-problem">The problem</h2>
+<p>Countries like <a href="https://en.wikipedia.org/wiki/Websites_blocked_in_mainland_China">China block web traffic from certain domains</a>.</p>
+
+<h2 id="so-what">So what?</h2>
+<p>So what if our website depends on some Google API and we don’t want it to break if it’s not availabe?</p>
+
+<p>There are two main approaches to try to by-pass this:</p>
+
+<ul>
+  <li>Resolving the Country by the request IP</li>
+  <li>Same as above but directly querying an IP database</li>
+</ul>
+
+<p>These are valid options as long as the IP gets well resolved but nothing actually keeps you from:</p>
+
+<ul>
+  <li>blocking users that might not be affected by the content blockage</li>
+  <li>taking a bad decision if the IP country is unknown</li>
+</ul>
+
+<p>Also these API’s have some usage thresholds and PRO subscriptions can become expensive.</p>
+
+<h2 id="test-the-functionality-instead-of-the-country">Test the functionality instead of the country!</h2>
+
+<p>Don’t bother trying to identify the country your using is accessing from, try to verify 
+if Google is available instead by grabbing a resource that is hosted under a Google domain or sub-domain!</p>
+
+<p>For instance, <a href="https://www.google.com/drive/">Google Drive</a> lets us store images and make them publically available.<br />
+If we try to access this image from our website and the load fails, then we are sure that the content is blocked!</p>
+
+<h2 id="configuring-google-drive">Configuring Google Drive</h2>
+<p>You can point to an image shared in Google Drive but there’s a small “trick” that you need to be aware of.</p>
+
+<p>By default, a shared image URL looks like the following (fake link):<br />
+<code>
+https://drive.google.com/file/d/0B8soiJxxxxxxxxxxbVZTRkxOeEU/view?pli=1
+</code></p>
+
+<p>The problem is that this kind of link will open your file in Google Drive viewer which is useless for us.<br />
+To get a pointer to the image directly we need to use a slightly different URL structure:
+<code>
+https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU
+</code></p>
+
+<p>The id argument must be exactly the same as the value between /d/ and /view of the previous link</p>
+
+<h2 id="javascript">Javascript</h2>
+<p>Bellow is the code you must use in your pages:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+
+    <span class="kd">var</span> <span class="nx">body</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+       	<span class="nx">img</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">),</span>
+       	<span class="nx">timestamp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span><span class="o">*</span><span class="mi">1</span><span class="p">;</span>
+    
+    <span class="c1">// a timestamp is added to avoid browser cache</span>
+    <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> 
+        <span class="s1">&#39;https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU&amp;_=&#39;</span> 
+        <span class="o">+</span> <span class="nx">timestamp</span><span class="p">;</span>
+    
+    <span class="nx">img</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+        <span class="c1">// put your success code here</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;all good!&#39;</span><span class="p">);</span> 
+    <span class="p">};</span>
+    
+    <span class="nx">img</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> 
+        <span class="c1">// put your error code here</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;something went wrong!&#39;</span><span class="p">);</span> 
+    <span class="p">};</span>
+    
+    <span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">img</span><span class="p">);</span>
+    
+<span class="p">})();</span></code></pre></div>
+
+<h2 id="additional-resources">Additional resources</h2>
+<p><strong>Resolve IP to Country APIs and DBs</strong></p>
+
+<ul>
+  <li><a href="https://freegeoip.net">freegeoip</a></li>
+  <li><a href="https://www.maxmind.com">MaxMind</a></li>
+  <li><a href="http://www.telize.com">Telize</a></li>
+</ul>
+
+<p><strong>Verify China domain blockage</strong></p>
+
+<ul>
+  <li><a href="http://viewdns.info/chinesefirewall">ViewDNS</a></li>
+</ul>
 
   </article>
 

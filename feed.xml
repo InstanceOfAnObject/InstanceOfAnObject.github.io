@@ -6,9 +6,115 @@
 </description>
     <link>http://www.instanceofanobject.com/</link>
     <atom:link href="http://www.instanceofanobject.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 27 Sep 2015 23:55:24 +0000</pubDate>
-    <lastBuildDate>Sun, 27 Sep 2015 23:55:24 +0000</lastBuildDate>
+    <pubDate>Mon, 12 Oct 2015 22:35:13 +0000</pubDate>
+    <lastBuildDate>Mon, 12 Oct 2015 22:35:13 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Verify country Google block</title>
+        <description>&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;/h2&gt;
+&lt;p&gt;Countries like &lt;a href=&quot;https://en.wikipedia.org/wiki/Websites_blocked_in_mainland_China&quot;&gt;China block web traffic from certain domains&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;so-what&quot;&gt;So what?&lt;/h2&gt;
+&lt;p&gt;So what if our website depends on some Google API and we don’t want it to break if it’s not availabe?&lt;/p&gt;
+
+&lt;p&gt;There are two main approaches to try to by-pass this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Resolving the Country by the request IP&lt;/li&gt;
+  &lt;li&gt;Same as above but directly querying an IP database&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are valid options as long as the IP gets well resolved but nothing actually keeps you from:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;blocking users that might not be affected by the content blockage&lt;/li&gt;
+  &lt;li&gt;taking a bad decision if the IP country is unknown&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Also these API’s have some usage thresholds and PRO subscriptions can become expensive.&lt;/p&gt;
+
+&lt;h2 id=&quot;test-the-functionality-instead-of-the-country&quot;&gt;Test the functionality instead of the country!&lt;/h2&gt;
+
+&lt;p&gt;Don’t bother trying to identify the country your using is accessing from, try to verify 
+if Google is available instead by grabbing a resource that is hosted under a Google domain or sub-domain!&lt;/p&gt;
+
+&lt;p&gt;For instance, &lt;a href=&quot;https://www.google.com/drive/&quot;&gt;Google Drive&lt;/a&gt; lets us store images and make them publically available.&lt;br /&gt;
+If we try to access this image from our website and the load fails, then we are sure that the content is blocked!&lt;/p&gt;
+
+&lt;h2 id=&quot;configuring-google-drive&quot;&gt;Configuring Google Drive&lt;/h2&gt;
+&lt;p&gt;You can point to an image shared in Google Drive but there’s a small “trick” that you need to be aware of.&lt;/p&gt;
+
+&lt;p&gt;By default, a shared image URL looks like the following (fake link):&lt;br /&gt;
+&lt;code&gt;
+https://drive.google.com/file/d/0B8soiJxxxxxxxxxxbVZTRkxOeEU/view?pli=1
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The problem is that this kind of link will open your file in Google Drive viewer which is useless for us.&lt;br /&gt;
+To get a pointer to the image directly we need to use a slightly different URL structure:
+&lt;code&gt;
+https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The id argument must be exactly the same as the value between /d/ and /view of the previous link&lt;/p&gt;
+
+&lt;h2 id=&quot;javascript&quot;&gt;Javascript&lt;/h2&gt;
+&lt;p&gt;Bellow is the code you must use in your pages:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementsByTagName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;body&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+       	&lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;img&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
+       	&lt;span class=&quot;nx&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// a timestamp is added to avoid browser cache&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU&amp;amp;_=&amp;#39;&lt;/span&gt; 
+        &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;timestamp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// put your success code here&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;all good!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onerror&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; 
+        &lt;span class=&quot;c1&quot;&gt;// put your error code here&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;alert&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;something went wrong!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;appendChild&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    
+&lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;additional-resources&quot;&gt;Additional resources&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Resolve IP to Country APIs and DBs&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://freegeoip.net&quot;&gt;freegeoip&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.maxmind.com&quot;&gt;MaxMind&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.telize.com&quot;&gt;Telize&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Verify China domain blockage&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://viewdns.info/chinesefirewall&quot;&gt;ViewDNS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
+        <link>http://www.instanceofanobject.com/blog/2015/10/12/verify-country-google-block.html</link>
+        <guid isPermaLink="true">http://www.instanceofanobject.com/blog/2015/10/12/verify-country-google-block.html</guid>
+        
+        <category>security</category>
+        
+        <category>web development</category>
+        
+        <category>google</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>Welcome to Jekyll!</title>
@@ -20,9 +126,7 @@ As I decided to come back to writting, I’ve set my self up to find an alternat
 &lt;p&gt;My first option was &lt;a href=&quot;https://ghost.org/&quot;&gt;Ghost&lt;/a&gt;.&lt;br /&gt;
 For whoever doesn’t know about it, &lt;a href=&quot;https://ghost.org/&quot;&gt;Ghost&lt;/a&gt; is a publishing platform based on &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;node.js&lt;/a&gt; and (Express)[http://expressjs.com/]. 
 The community is very active and the product features are pretty impressive.&lt;br /&gt;
-The problem is that I don’t intend to collaborate or do anything else than put some words out there.&lt;/p&gt;
-
-&lt;p&gt;All my content here is pretty static so I didn’t see the use of a database or any other more advanced features.&lt;/p&gt;
+The problem is that I don’t intend to collaborate or do anything else than put some words out there. Most of all, I didn’t want to have a database to store static content.&lt;/p&gt;
 
 &lt;p&gt;I want to write and publish. Done.&lt;/p&gt;
 
@@ -445,90 +549,6 @@ Please send me your requests and desires, I’ll do my best to implement them.&l
         <category>t-sql</category>
         
         <category>sql server</category>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Overriding FormsAuthentication For Some URLs</title>
-        <description>&lt;p&gt;How many times did you thought that creating virtual directories with specific web.config files was lame?&lt;br /&gt;
-If you feel the pain and want it to go away, read on!&lt;br /&gt;
-Also note that although I’ll refer a lot to HttpHandlers on this post, everything here (except the route registration) is also true for common web pages.&lt;/p&gt;
-
-&lt;h2 id=&quot;be-sure-to-have-a-look-at-this&quot;&gt;Be sure to have a look at this&lt;/h2&gt;
-&lt;p&gt;A few days ago I wrote about &lt;a href=&quot;http://www.instanceofanobject.com/2011/10/aspnet-40-httphandler-routing-support.html&quot;&gt;handling HttpHandlers with ASP.net routing&lt;/a&gt;.&lt;br /&gt;
-I’ll refer to those extension methods to register my test handler route, so have a look on that post before continuing.&lt;/p&gt;
-
-&lt;p&gt;Now what I need is a way to override the default FormsAuthentication configuration for a specific set of HttpHandlers.&lt;/p&gt;
-
-&lt;h2 id=&quot;virtual-folder-webconfig-and-the-ashx-files&quot;&gt;Virtual Folder, web.config and the ASHX files&lt;/h2&gt;
-&lt;p&gt;FormsAuthentication support this out-of-the-box by simply putting the resources with special security concerns on a separated folder with its own web.config file.&lt;/p&gt;
-
-&lt;p&gt;So if you want a virtual directory to allow access to anonymous users just add a web.config file with nothing but this in it:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;system&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;.web=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;authorization&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;allow&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;users=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;?&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/allow&amp;gt;&amp;lt;/authorization&amp;gt;&lt;/span&gt;
- &lt;span class=&quot;nt&quot;&gt;&amp;lt;/system&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This will work for any resource can can be accessed through an URL but this isn’t always the case with HttpHandlers.&lt;/p&gt;
-
-&lt;h2 id=&quot;formsauthentication-and-httphandlers-without-ashx-file&quot;&gt;FormsAuthentication and HttpHandlers &lt;strong&gt;without&lt;/strong&gt; ASHX file&lt;/h2&gt;
-&lt;p&gt;Using the extension methods I wrote on the &lt;a href=&quot;http://www.instanceofanobject.com/2011/10/aspnet-40-httphandler-routing-support.html&quot;&gt;said previous post&lt;/a&gt; you can create an HttpHandler by simply creating a new class and implementing the IHttpHandler interface and point a route to it, just like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;RouteTable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MapHttpHandlerRoute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;s&quot;&gt;&amp;quot;Test&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-    &lt;span class=&quot;s&quot;&gt;&amp;quot;Unsecured/Controllers/Test&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MyApplication&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UnsecuredHandlers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MyUnsecuredHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;This means that, whenever you call ht&lt;em&gt;*://mydomain/Unsecured/Controllers/Test the request will be routed to MyUnsecuredHandler instance, not to a physical uri location as usual.&lt;br /&gt;
-Now have a look at the route. It begins with *Unsecured&lt;/em&gt; right? Keep reading and you’ll understand why.&lt;/p&gt;
-
-&lt;p&gt;But we’re not there yet, what I really want is to say that some of my handlers allow anonymous requests, and for that I’ll edit my website web.config and add the following:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
- &lt;span class=&quot;nt&quot;&gt;&amp;lt;location&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;path=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;unsecured&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;system&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;.web=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;authorization&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;allow&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;users=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;*&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/allow&amp;gt;&amp;lt;/authorization&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/system&amp;gt;&lt;/span&gt;
- &lt;span class=&quot;nt&quot;&gt;&amp;lt;/location&amp;gt;&lt;/span&gt;  
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Now its done!
-Notice that on the location path I only have &lt;em&gt;unsecured&lt;/em&gt;. This will grant request permissions to all routes that begin with &lt;em&gt;unsecured&lt;/em&gt;!&lt;br /&gt;
-This is great because now I don’t have to bother about structuring the resources on virtual directories and possibly duplicating the code for different scenarios.&lt;br /&gt;
-Whenever I need a Page or and HttpHandler to be available to anonymous users I just need to create a route to it that begins with &lt;em&gt;unsecured&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you don’t like this approach (specially for pages where the url is visible for the users) you can always add as much &lt;em&gt;location&lt;/em&gt; entries on the web.config as you like.&lt;/p&gt;
-
-&lt;p&gt;If you’re &lt;strong&gt;not using Routing&lt;/strong&gt; you can still specify a location to your resources putting the uri of the Page or HttpHandler on the &lt;em&gt;path&lt;/em&gt; attribute:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
- &lt;span class=&quot;nt&quot;&gt;&amp;lt;location&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;path=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;MyUnsecuredPage.aspx&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;system&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;.web=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;authorization&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;allow&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;users=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;*&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-   &lt;span class=&quot;nt&quot;&gt;&amp;lt;/allow&amp;gt;&amp;lt;/authorization&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/system&amp;gt;&lt;/span&gt;
- &lt;span class=&quot;nt&quot;&gt;&amp;lt;/location&amp;gt;&lt;/span&gt;  
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Sun, 30 Oct 2011 20:19:00 +0000</pubDate>
-        <link>http://www.instanceofanobject.com/blog/2011/10/30/overriding-forms-authentication-for-some-urls.html</link>
-        <guid isPermaLink="true">http://www.instanceofanobject.com/blog/2011/10/30/overriding-forms-authentication-for-some-urls.html</guid>
-        
-        <category>asp.net</category>
-        
-        <category>routing</category>
-        
-        <category>forms authentication</category>
         
         
         <category>blog</category>
