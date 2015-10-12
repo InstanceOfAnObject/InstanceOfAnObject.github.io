@@ -15,9 +15,7 @@ As I decided to come back to writting, I've set my self up to find an alternativ
 My first option was [Ghost](https://ghost.org/).  
 For whoever doesn't know about it, [Ghost](https://ghost.org/) is a publishing platform based on [node.js](https://nodejs.org/en/) and (Express)[http://expressjs.com/]. 
 The community is very active and the product features are pretty impressive.  
-The problem is that I don't intend to collaborate or do anything else than put some words out there.
-
-All my content here is pretty static so I didn't see the use of a database or any other more advanced features.
+The problem is that I don't intend to collaborate or do anything else than put some words out there. Most of all, I didn't want to have a database to store static content.
 
 I want to write and publish. Done.
 
