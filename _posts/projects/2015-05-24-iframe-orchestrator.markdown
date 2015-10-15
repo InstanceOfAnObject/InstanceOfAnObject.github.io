@@ -28,4 +28,4 @@ This tool will allow you to establish a communication pipeline between each IFra
 To take this a bit further, you'll also be able to pass messages and trigger events between IFrames.
 
 ## Where can this be used?
-The motivation behind this tool was for complex SharePoint Provider Hosted App, but there's no dependency whatsoever to SharePoint.  
+The motivation behind this tool was for complex SharePoint Provider Hosted App, but there's no dependency whatsoever to SharePoint.
