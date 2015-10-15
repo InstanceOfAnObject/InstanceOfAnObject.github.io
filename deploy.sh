@@ -16,7 +16,7 @@
 cd ~/workspace
 git checkout dev
 
-# build the website
+# rebuild website
 jekyll build
 
 # delete all files in master branch
