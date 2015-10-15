@@ -40,16 +40,16 @@ You can point to an image shared in Google Drive but there's a small "trick" tha
 
 By default, a shared image URL looks like the following (fake link):  
 ```
-https://drive.google.com/file/d/0B8soiJxxxxxxxxxxbVZTRkxOeEU/view?pli=1
+https://drive.google.com/file/d/xxxxxxxxxxxxxxxxxxxxxxxxxxxx/view?pli=1
 ```
 
 The problem is that this kind of link will open your file in Google Drive viewer which is useless for us.  
 To get a pointer to the image directly we need to use a slightly different URL structure:
 ```
-https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU
+https://drive.google.com/uc?id=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-The id argument must be exactly the same as the value between /d/ and /view of the previous link
+The id argument must be exactly the same as the represented by xxxxxxxxxxxxxxxxxxxxxxxxxxxx in the previous link
 
 ## Javascript
 Bellow is the code you must use in your pages:
@@ -62,7 +62,7 @@ Bellow is the code you must use in your pages:
     
     // a timestamp is added to avoid browser cache
     img.src = 
-        'https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU&_=' 
+        'https://drive.google.com/uc?id=xxxxxxxxxxxxxxxxxxxxxxxxxxxx&_=' 
         + timestamp;
     
     img.onload = function(){
