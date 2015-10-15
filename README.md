@@ -9,7 +9,20 @@ Meanwhile I also tried existing blogging platforms and now I finally decided to 
 I'll be using this page to document my experience and maybe help someone else.
 
 ## Why Jekyll?
+My first option was [Ghost](https://ghost.org/).  
+For whoever doesn't know about it, [Ghost](https://ghost.org/) is a publishing platform based on [node.js](https://nodejs.org/en/) and (Express)[http://expressjs.com/]. 
+The community is very active and the product features are pretty impressive.  
+The problem is that I don't intend to collaborate or do anything else other than put some words out there. Most of all, I didn't want to have a database to store static content.
 
+I want to write, publish and go on with my life.
+
+That's when I found [Jekyll](http://jekyllrb.com/).  
+To put it correctly, I found it through Github when I was reading about what it supports as publising platforms for project and user pages.
+
+Jekyll itself is not a blogging platform, is "simply" an HTML generator.  
+What you get as a publisher is a set of static HTML files that you can just deploy wherever you want.  
+In my case I'm using Github pages and it works just fine.  
+If Github turns out not to be the best hosting option, moving everything somewhere else requires no additional effort.
 
 ## Plugins
 ### Plugins under GitHub Pages
@@ -31,6 +44,36 @@ To automate things I've created a deploy.sh bash file in the 'dev' branch.
 This is a user site. In case you have a repository site, do the same but for the gh-pages branch.
 
 ### Taking the most out of Tags
+I like to tag my posts 
+
+## Redirecting old Blogger URL's
+One thing I absolutely had to support is the redirection from the old Blogger URL structure.  
+As Jekyll has a different document structure and I also wanted to do some cleanup my previous articles now live in a different URL to which I need to point if someone still points to the old ones.
+
+To accomplish this I decided to use the 404.html page and add some javascript in there.  
+Here's a small code snippet but you can refer to the whole file [here](https://github.com/InstanceOfAnObject/InstanceOfAnObject.github.io/blob/master/404.html#L243-L365).
+
+{% highlight javascript %}
+<script>
+	(function(){
+		var url = window.location,
+			path = url.pathname;
+
+		// handle old blogger urls
+		switch(path){
+			case '/2013/02/fix-ssrs-report-showing-blank-pages.html':
+				window.location.href = '/blog/2013/02/19/fix-ssrs-report-showing-blank-pages-when-exporting-to-pdf.html';
+				break;
+			case '/2012/08/windows-7-2008-r2-as-internet-hot-spot.html':
+				window.location.href = '/blog/2012/08/05/windows-as-internet-hotspot.html';
+				break;
+            
+            /* ... and so on ... */
+            
+		}
+	})();
+</script>
+{% endhighlight %}
 
 ## Using Jekyll on Cloud9
 C9 is a great way to edit your GitHub pages Jekyll site.  

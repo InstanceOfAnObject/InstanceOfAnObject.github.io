@@ -6,8 +6,8 @@
 </description>
     <link>http://www.instanceofanobject.com/</link>
     <atom:link href="http://www.instanceofanobject.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 12 Oct 2015 22:35:13 +0000</pubDate>
-    <lastBuildDate>Mon, 12 Oct 2015 22:35:13 +0000</lastBuildDate>
+    <pubDate>Thu, 15 Oct 2015 12:15:15 +0000</pubDate>
+    <lastBuildDate>Thu, 15 Oct 2015 12:15:15 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -47,16 +47,16 @@ If we try to access this image from our website and the load fails, then we are 
 
 &lt;p&gt;By default, a shared image URL looks like the following (fake link):&lt;br /&gt;
 &lt;code&gt;
-https://drive.google.com/file/d/0B8soiJxxxxxxxxxxbVZTRkxOeEU/view?pli=1
+https://drive.google.com/file/d/xxxxxxxxxxxxxxxxxxxxxxxxxxxx/view?pli=1
 &lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;The problem is that this kind of link will open your file in Google Drive viewer which is useless for us.&lt;br /&gt;
 To get a pointer to the image directly we need to use a slightly different URL structure:
 &lt;code&gt;
-https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU
+https://drive.google.com/uc?id=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 &lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;The id argument must be exactly the same as the value between /d/ and /view of the previous link&lt;/p&gt;
+&lt;p&gt;The id argument must be exactly the same as the represented by xxxxxxxxxxxxxxxxxxxxxxxxxxxx in the previous link&lt;/p&gt;
 
 &lt;h2 id=&quot;javascript&quot;&gt;Javascript&lt;/h2&gt;
 &lt;p&gt;Bellow is the code you must use in your pages:&lt;/p&gt;
@@ -69,7 +69,7 @@ https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU
     
     &lt;span class=&quot;c1&quot;&gt;// a timestamp is added to avoid browser cache&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 
-        &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU&amp;amp;_=&amp;#39;&lt;/span&gt; 
+        &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://drive.google.com/uc?id=xxxxxxxxxxxxxxxxxxxxxxxxxxxx&amp;amp;_=&amp;#39;&lt;/span&gt; 
         &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;timestamp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     
     &lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
@@ -118,24 +118,102 @@ https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU
     
       <item>
         <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;“So, I’ve decided to take my work back underground”… and start using Jekyll.&lt;/p&gt;
+        <description>&lt;p&gt;Some time back, I decided to take my blog out of Blogger.&lt;br /&gt;
+I’m not happy with it (I never was actually), so my first idea was to build my own blogging engine as a process for learning a new language.&lt;br /&gt;
+And so I did… Too many times :)&lt;br /&gt;
+I built it with NodeJS, AngularJS, React… played with several NoSql DB’s, whatever…&lt;br /&gt;
+The outcome was always a workable playground but I never had the time to make them good enough for production.&lt;/p&gt;
 
-&lt;p&gt;It’s been a while since I messed up my Blogger theme and even longer since the last time I actually posted something on my blog.&lt;br /&gt;
-As I decided to come back to writting, I’ve set my self up to find an alternative to Blogger.&lt;/p&gt;
+&lt;p&gt;Meanwhile I also tried existing blogging platforms and now I finally decided to use Jekyll and host it on GitHub.&lt;br /&gt;
+I’ll be using this page to document my experience and maybe help someone else.&lt;/p&gt;
 
+&lt;h2 id=&quot;why-jekyll&quot;&gt;Why Jekyll?&lt;/h2&gt;
 &lt;p&gt;My first option was &lt;a href=&quot;https://ghost.org/&quot;&gt;Ghost&lt;/a&gt;.&lt;br /&gt;
 For whoever doesn’t know about it, &lt;a href=&quot;https://ghost.org/&quot;&gt;Ghost&lt;/a&gt; is a publishing platform based on &lt;a href=&quot;https://nodejs.org/en/&quot;&gt;node.js&lt;/a&gt; and (Express)[http://expressjs.com/]. 
 The community is very active and the product features are pretty impressive.&lt;br /&gt;
-The problem is that I don’t intend to collaborate or do anything else than put some words out there. Most of all, I didn’t want to have a database to store static content.&lt;/p&gt;
+The problem is that I don’t intend to collaborate or do anything else other than put some words out there. Most of all, I didn’t want to have a database to store static content.&lt;/p&gt;
 
-&lt;p&gt;I want to write and publish. Done.&lt;/p&gt;
+&lt;p&gt;I want to write, publish and go on with my life.&lt;/p&gt;
 
 &lt;p&gt;That’s when I found &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;.&lt;br /&gt;
-Actually to put it correctly, I found it through Github when I was reading about what it supports as publising platforms for project and user pages.&lt;/p&gt;
+To put it correctly, I found it through Github when I was reading about what it supports as publising platforms for project and user pages.&lt;/p&gt;
 
-&lt;p&gt;Jekyll it self is not a blogging platform, is “simply” an HTML generator.&lt;br /&gt;
+&lt;p&gt;Jekyll itself is not a blogging platform, is “simply” an HTML generator.&lt;br /&gt;
 What you get as a publisher is a set of static HTML files that you can just deploy wherever you want.&lt;br /&gt;
-In my case I’m using Github pages and it works just fine.&lt;/p&gt;
+In my case I’m using Github pages and it works just fine.&lt;br /&gt;
+If Github turns out not to be the best hosting option, moving everything somewhere else requires no additional effort.&lt;/p&gt;
+
+&lt;h2 id=&quot;plugins&quot;&gt;Plugins&lt;/h2&gt;
+&lt;p&gt;### Plugins under GitHub Pages
+Due to security restrictions, GitHub only supports a (very) limited number of Jekyll plugins.&lt;br /&gt;
+Everything else zou might have in zour _plugins folder will be ignored.&lt;/p&gt;
+
+&lt;p&gt;This means that everything works fine on your dev machine but once you deploy do GitHub Pages you’ll loose functionality.&lt;br /&gt;
+To solve this I decided to take advantage of git branches and the .nojekyll file.&lt;/p&gt;
+
+&lt;p&gt;What I ended up doing was:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;create a ‘dev’ branch where I have the full Jekyll project&lt;/li&gt;
+  &lt;li&gt;empty the ‘master’ branch and copy the contents of the dev branch _site folder&lt;/li&gt;
+  &lt;li&gt;add the .nojekyll file in the root of the ‘master’ branch to tell GitHub that this is not a Jekyll site
+and that’s it.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To automate things I’ve created a deploy.sh bash file in the ‘dev’ branch.&lt;/p&gt;
+
+&lt;p&gt;This is a user site. In case you have a repository site, do the same but for the gh-pages branch.&lt;/p&gt;
+
+&lt;h3 id=&quot;taking-the-most-out-of-tags&quot;&gt;Taking the most out of Tags&lt;/h3&gt;
+&lt;p&gt;I like to tag my posts&lt;/p&gt;
+
+&lt;h2 id=&quot;redirecting-old-blogger-urls&quot;&gt;Redirecting old Blogger URL’s&lt;/h2&gt;
+&lt;p&gt;One thing I absolutely had to support is the redirection from the old Blogger URL structure.&lt;br /&gt;
+As Jekyll has a different document structure and I also wanted to do some cleanup my previous articles now live in a different URL to which I need to point if someone still points to the old ones.&lt;/p&gt;
+
+&lt;p&gt;To accomplish this I decided to use the 404.html page and add some javascript in there.&lt;br /&gt;
+Here’s a small code snippet but you can refer to the whole file &lt;a href=&quot;https://github.com/InstanceOfAnObject/InstanceOfAnObject.github.io/blob/master/404.html#L243-L365&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;pathname&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;c1&quot;&gt;// handle old blogger urls&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/2013/02/fix-ssrs-report-showing-blank-pages.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+			&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/blog/2013/02/19/fix-ssrs-report-showing-blank-pages-when-exporting-to-pdf.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/2012/08/windows-7-2008-r2-as-internet-hot-spot.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+			&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;href&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;/blog/2012/08/05/windows-as-internet-hotspot.html&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        
+        &lt;span class=&quot;cm&quot;&gt;/* ... and so on ... */&lt;/span&gt;
+        
+	&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;using-jekyll-on-cloud9&quot;&gt;Using Jekyll on Cloud9&lt;/h2&gt;
+&lt;p&gt;C9 is a great way to edit your GitHub pages Jekyll site.&lt;br /&gt;
+Basically you just login with your github account, clone to repository and start editing.&lt;/p&gt;
+
+&lt;p&gt;Here I’ll log the issues and solutions I’ll be facing.&lt;/p&gt;
+
+&lt;h3 id=&quot;start-serving-jekyll-from-c9&quot;&gt;Start serving Jekyll from C9&lt;/h3&gt;
+&lt;p&gt;To start serving Jekyll locally we usually use: &lt;em&gt;jekyll serve&lt;/em&gt;&lt;br /&gt;
+Under C9 we have to be a bit more specific and specify the host and port:
+&lt;code&gt;bash
+jekyll serve --host $IP --port $PORT --baseurl &#39;&#39;
+&lt;/code&gt;
+If it complains that the port 8080 is already in use, chances are that Apache server took it for himself.&lt;br /&gt;
+Execute this to make sure:
+&lt;code&gt;bash
+lsof -i:8080
+&lt;/code&gt;
+If it’s in fact Apache, execute the following to stop the process:
+&lt;code&gt;bash
+sudo /etc/init.d/apache2 stop
+&lt;/code&gt;
+After this, try starting jekyll again, it will work.&lt;/p&gt;
 </description>
         <pubDate>Sun, 05 Jul 2015 14:41:08 +0000</pubDate>
         <link>http://www.instanceofanobject.com/blog/2015/07/05/welcome-to-jekyll.html</link>
@@ -150,13 +228,126 @@ In my case I’m using Github pages and it works just fine.&lt;/p&gt;
     
       <item>
         <title>IFrame Orchestrator</title>
-        <description>&lt;p&gt;IFrame Orchestrator&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;https://github.com/InstanceOfAnObject/IFrameOrchestrator&quot;&gt;&lt;img src=&quot;/assets/images/autreplanete_icons/social_icons/png/color/github-color.png&quot; /&gt;Github Repository&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://travis-ci.org/InstanceOfAnObject/IFrameOrchestrator&quot;&gt;&lt;img src=&quot;https://travis-ci.org/InstanceOfAnObject/IFrameOrchestrator.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;description&quot;&gt;Description&lt;/h2&gt;
+&lt;p&gt;Orchestrates messages between an IFrame and its parent page, as well as between IFrames on the same page. The Iframes can even reside on different domains!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/InstanceOfAnObject/IFrameOrchestrator&quot;&gt;Hop on to the Github page&lt;/a&gt; to get everything you need to get started.&lt;/p&gt;
+
+&lt;h2 id=&quot;why&quot;&gt;Why?&lt;/h2&gt;
+&lt;p&gt;I realize this looks a bit outdated functionally; after all, who uses IFrames anyway right!?&lt;/p&gt;
+
+&lt;p&gt;Well if you’re asking yourself that question, clearly you’re not a SharePoint developer (neither am I). In SharePoint 2013, Provider Hosted Apps are rendered inside of IFrames that are rendered inside your site.&lt;/p&gt;
+
+&lt;p&gt;If you’re planning to do, lets say, a single-page-app (SPA) to be delivered in this model, you’ll need to interact with the “world” outside your IFrame.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-does-this-do&quot;&gt;What does this do?&lt;/h2&gt;
+&lt;p&gt;This tool will allow you to establish a communication pipeline between each IFrame and its parent, easing a lot of pain.&lt;/p&gt;
+
+&lt;p&gt;To take this a bit further, you’ll also be able to pass messages and trigger events between IFrames.&lt;/p&gt;
+
+&lt;h2 id=&quot;where-can-this-be-used&quot;&gt;Where can this be used?&lt;/h2&gt;
+&lt;p&gt;The motivation behind this tool was for complex SharePoint Provider Hosted App, but there’s no dependency whatsoever to SharePoint.&lt;/p&gt;
 </description>
         <pubDate>Sun, 24 May 2015 00:00:00 +0000</pubDate>
         <link>http://www.instanceofanobject.com/projects/2015/05/24/iframe-orchestrator.html</link>
         <guid isPermaLink="true">http://www.instanceofanobject.com/projects/2015/05/24/iframe-orchestrator.html</guid>
         
         <category>web development</category>
+        
+        
+        <category>projects</category>
+        
+      </item>
+    
+      <item>
+        <title>CSS Sprite Generator</title>
+        <description>&lt;p&gt;&lt;a href=&quot;https://github.com/InstanceOfAnObject/SpriteCreator&quot;&gt;&lt;img src=&quot;/assets/images/autreplanete_icons/social_icons/png/color/github-color.png&quot; /&gt;Github Repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;New v2.0&lt;/h2&gt;
+
+&lt;p&gt;I&amp;nbsp; decided to increment the major version of this tool as it implements new core features and actually brakes background compatibility with the previous command line commands.&lt;/p&gt;
+
+&lt;p&gt;So... what&amp;#39;s new?&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;3 Bin Packing algorithms to choose from that optimize the sprite image size&lt;/li&gt;
+	&lt;li&gt;New and refactored command line commands to let you automate the generation process&lt;/li&gt;
+	&lt;li&gt;Support for inner folders&lt;/li&gt;
+	&lt;li&gt;Allow setting the output file names&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Image Sprites are a very good way to feed your application some images. Basically, it consists of combining a set of images in a larger one and then just caching it. When you need one of the small images, all you have to know are the coordinates of it on the large one. With this technique, you just need to load one image for the entire application and reuse it, instead of loading each image at a time.&lt;/p&gt;
+
+&lt;p&gt;Here, I&amp;#39;ll be covering the implementation with CSS used on WebSites, but you can use this technique wherever you want.&lt;/p&gt;
+
+&lt;h2&gt;Why This?&lt;/h2&gt;
+
+&lt;p&gt;Sure you can Google it and find a lot of matches telling you how to use sprites and CSS but where&amp;#39;s the &amp;quot;no pain&amp;quot; way of building them and their CSS? All of them will tell you to use Photoshop of any other photo editing tool but this will always take a lot of time. That&amp;#39;s when this cute little application comes in. It will generate the sprite image and its CSS in no time, and you can add images later and regenerate it without having to worry about breaking your code!&lt;/p&gt;
+
+&lt;h2&gt;Using the Code&lt;/h2&gt;
+
+&lt;p&gt;On the package, you&amp;#39;ll find a compiled version and its source code.&lt;/p&gt;
+
+&lt;p&gt;Just drop the &lt;em&gt;SpriteCreator.exe&lt;/em&gt; file on the folder that has the images to be included on the sprite and run it. DONE!&lt;/p&gt;
+
+&lt;h3&gt;Assumptions, Limitations and Functionality&lt;/h3&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;All image files on the folder will be added to the sprite no matter the size.&lt;/li&gt;
+	&lt;li&gt;All the images on the folder will be included on the sprite. &amp;nbsp;&lt;/li&gt;
+	&lt;li&gt;Only jpg, jpeg, png &amp;amp; bmp extensions are supported.&lt;/li&gt;
+	&lt;li&gt;The name of the images is used on the CSS class name.&lt;/li&gt;
+	&lt;li&gt;The spaces on images file name will be replaced with -&lt;/li&gt;
+	&lt;li&gt;The result 3 files, one &lt;em&gt;*.png&lt;/em&gt; (the sprite), &lt;em&gt;*.css&lt;/em&gt; and *.html (the demo usage page) where &lt;em&gt;*&lt;/em&gt; is the name you specified or a random GUID.&amp;nbsp;&lt;/li&gt;
+	&lt;li&gt;CSS file includes a class that applies the background image to the element&lt;/li&gt;
+	&lt;li&gt;Images are ordered using 3 different algorithms (more about them bellow).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Bin Packing Algorithms&lt;/h2&gt;
+
+&lt;p&gt;To optimize the distribution of the images on the sprite I used the code from here:&amp;nbsp; &lt;a href=&quot;http://nuclexframework.codeplex.com/wikipage?title=Nuclex.Game&quot; target=&quot;_blank&quot; title=&quot;Nuclex Game&quot;&gt;Nuclex Game&lt;/a&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;The Bin packing algorithms are very well documented on &lt;a href=&quot;http://nuclexframework.codeplex.com/wikipage?title=Rectangle%20Packing&amp;amp;referringTitle=Nuclex.Game&quot; target=&quot;_blank&quot; title=&quot;Rectangle Packing Documentation&quot;&gt;their page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;All Bin Packing Algorithm credits must be given to these guys that saved me a lot of time by perfectly implementing these three good bin packing algorithms in C#. On my side I only removed the XNA dependencies and replaced them with pure System.Drawing objects.&lt;/p&gt;
+
+&lt;h2&gt;Options&lt;/h2&gt;
+
+&lt;p&gt;This is a console application so you can pass some customization arguments.&lt;/p&gt;
+
+&lt;ol&gt;
+	&lt;li&gt;&lt;strong&gt;/h, /?, /help&lt;/strong&gt; :: Help&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;/s&lt;/strong&gt; :: Specify the images source directory path&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;/d&lt;/strong&gt; :: Destination dir path&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;/D&lt;/strong&gt; :: Same as /d but creates the directory if it doesn&amp;#39;t exist&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;/f&lt;/strong&gt; :: Destination file name&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;/F&lt;/strong&gt; :: Same as /f but overrides the files if they already exist&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;/cp&lt;/strong&gt; :: CSS class name prefix&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;/pl&lt;/strong&gt; :: Specify the Bin Packaging Level (1, 2 (default) or 3)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Ex: &lt;/strong&gt;&lt;em&gt;SpriteCreator.exe&lt;/em&gt; /s Images /F SiteImages /cp &amp;quot;app-ui-&amp;quot;&lt;/p&gt;
+
+&lt;h2&gt;History&lt;/h2&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;v1.0 - The very beginning&lt;/li&gt;
+	&lt;li&gt;v1.1 - Support for images of different sizes and small improvements.&lt;/li&gt;
+	&lt;li&gt;v2.0 - Arguments refactoring and Bin Packing Algorithm usage.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 18 Dec 2013 12:24:00 +0000</pubDate>
+        <link>http://www.instanceofanobject.com/projects/2013/12/18/css-sprite-generator.html</link>
+        <guid isPermaLink="true">http://www.instanceofanobject.com/projects/2013/12/18/css-sprite-generator.html</guid>
+        
+        <category>web development</category>
+        
+        <category>css</category>
         
         
         <category>projects</category>
@@ -307,7 +498,27 @@ I don’t want to be forced to put all pages on the same folder just because of 
     
       <item>
         <title>Advanced ASP.net Generic Handler</title>
-        <description>&lt;p&gt;Advanced ASP.net Generic Handler&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;https://github.com/InstanceOfAnObject/ASPnetAdvancedHandler&quot;&gt;&lt;img src=&quot;/assets/images/autreplanete_icons/social_icons/png/color/github-color.png&quot; /&gt;Github Repository&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;/h2&gt;
+&lt;p&gt;This is a project I did some years back but never took much care maintaining or writing proper automated tests.&lt;br /&gt;
+Although this has been used in multiple production applications, I suggest to take your time to understand it properly.&lt;/p&gt;
+
+&lt;p&gt;On &lt;a href=&quot;http://www.codeproject.com/Articles/353260/ASP-NET-Advanced-Generic-Handler-ASHX&quot;&gt;CodeProject&lt;/a&gt; there’s also a nice discusison about this approach over WebAPI.&lt;/p&gt;
+
+&lt;h2 id=&quot;description&quot;&gt;Description&lt;/h2&gt;
+&lt;p&gt;In ASP.NET, we have something that is usually overlooked that is called &lt;a href=&quot;https://msdn.microsoft.com/en-us/library/system.web.ihttphandler(v=vs.100).aspx&quot;&gt;Generic Handlers&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is an completely worked out Generic Handler that truly knows how to handle your http (AJAX and not) requests.&lt;/p&gt;
+
+&lt;p&gt;For now, for a detailed explanation, please look at the original &lt;a href=&quot;http://www.codeproject.com/Articles/353260/ASP-NET-Advanced-Generic-Handler-ASHX&quot;&gt;CodeProject article&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;why-not-webapi-or-mvc&quot;&gt;Why not WebAPI or MVC?&lt;/h2&gt;
+&lt;p&gt;When I wrote this, WebAPI was not available yet.&lt;/p&gt;
+
+&lt;p&gt;Although Generic Handlers still have their meaning, probably you’ll find WebAPI a good match for most of your needs.&lt;/p&gt;
+
+&lt;p&gt;ASP.net MVC Controllers can also be used, specially if you’re already using it in your application.&lt;/p&gt;
 </description>
         <pubDate>Sat, 24 Mar 2012 12:24:00 +0000</pubDate>
         <link>http://www.instanceofanobject.com/projects/2012/03/24/advanced-generic-handler-ashx.html</link>
@@ -497,58 +708,6 @@ Please send me your requests and desires, I’ll do my best to implement them.&l
         <category>web development</category>
         
         <category>asp.net</category>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>SQL Server 2008 Transactions Usage Template</title>
-        <description>&lt;p&gt;I must admit I don’t use Transactions that much, but the fact is that most of my stored procedures are atomic, i.e. although they may have a lot of code, only one data changing operation (INSERT, UPDATE or DELETE) is done, so there’s no need to wrap it on a transaction.&lt;/p&gt;
-
-&lt;p&gt;Because I don’t use them much, its not always clear to me what’s the “best way” of using a transaction. Sure we all know the basics but:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Is the transaction always closed?&lt;/li&gt;
-  &lt;li&gt;Are we handling the error that caused the transaction to rollback?&lt;/li&gt;
-  &lt;li&gt;Are we accurately reporting the error to the caller?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To be able to always answer YES to all these questions without thinking much about it, my friend &lt;a href=&quot;http://www.linkedin.com/in/ruiinacio&quot;&gt;Rui Inacio&lt;/a&gt; dove into Google and came up with a template that can be used as a start point of all your transaction scripts.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;BEGIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TRY&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;BEGIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TRANSACTION&lt;/span&gt;
-  
-   &lt;span class=&quot;c1&quot;&gt;-- ADD YOUR CODE HERE --&lt;/span&gt;
-  
-  &lt;span class=&quot;n&quot;&gt;IF&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TRANCOUNT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;BEGIN&lt;/span&gt;
-   &lt;span class=&quot;k&quot;&gt;COMMIT&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;END&lt;/span&gt;
- &lt;span class=&quot;k&quot;&gt;END&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TRY&lt;/span&gt;
- &lt;span class=&quot;k&quot;&gt;BEGIN&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CATCH&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;DECLARE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorMessage&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;VARCHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  
-  &lt;span class=&quot;k&quot;&gt;SET&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorMessage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;ErrorProcedure: &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ISNULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ERROR_PROCEDURE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; Line: &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CAST&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ERROR_LINE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;VARCHAR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39; Message: &amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ERROR_MESSAGE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  
-  &lt;span class=&quot;n&quot;&gt;IF&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;TRANCOUNT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;BEGIN&lt;/span&gt;
-   &lt;span class=&quot;k&quot;&gt;ROLLBACK&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TRANSACTION&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;END&lt;/span&gt;
-  
-  &lt;span class=&quot;n&quot;&gt;RAISERROR&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ErrorMessage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;  
- &lt;span class=&quot;k&quot;&gt;END&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CATCH&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;You may change the way you report the error inside the CATCH but for most cases this is what you need.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 10 Nov 2011 15:57:00 +0000</pubDate>
-        <link>http://www.instanceofanobject.com/blog/2011/11/10/sqlserver2008-transactions-usage-template.html</link>
-        <guid isPermaLink="true">http://www.instanceofanobject.com/blog/2011/11/10/sqlserver2008-transactions-usage-template.html</guid>
-        
-        <category>t-sql</category>
-        
-        <category>sql server</category>
         
         
         <category>blog</category>

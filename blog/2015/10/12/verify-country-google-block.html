@@ -286,16 +286,16 @@ If we try to access this image from our website and the load fails, then we are 
 
 <p>By default, a shared image URL looks like the following (fake link):<br />
 <code>
-https://drive.google.com/file/d/0B8soiJxxxxxxxxxxbVZTRkxOeEU/view?pli=1
+https://drive.google.com/file/d/xxxxxxxxxxxxxxxxxxxxxxxxxxxx/view?pli=1
 </code></p>
 
 <p>The problem is that this kind of link will open your file in Google Drive viewer which is useless for us.<br />
 To get a pointer to the image directly we need to use a slightly different URL structure:
 <code>
-https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU
+https://drive.google.com/uc?id=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 </code></p>
 
-<p>The id argument must be exactly the same as the value between /d/ and /view of the previous link</p>
+<p>The id argument must be exactly the same as the represented by xxxxxxxxxxxxxxxxxxxxxxxxxxxx in the previous link</p>
 
 <h2 id="javascript">Javascript</h2>
 <p>Bellow is the code you must use in your pages:</p>
@@ -308,7 +308,7 @@ https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU
     
     <span class="c1">// a timestamp is added to avoid browser cache</span>
     <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> 
-        <span class="s1">&#39;https://drive.google.com/uc?id=0B8soiJxxxxxxxxxxbVZTRkxOeEU&amp;_=&#39;</span> 
+        <span class="s1">&#39;https://drive.google.com/uc?id=xxxxxxxxxxxxxxxxxxxxxxxxxxxx&amp;_=&#39;</span> 
         <span class="o">+</span> <span class="nx">timestamp</span><span class="p">;</span>
     
     <span class="nx">img</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
