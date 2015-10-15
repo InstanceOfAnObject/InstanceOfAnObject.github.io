@@ -6,8 +6,8 @@
 </description>
     <link>http://www.instanceofanobject.com/</link>
     <atom:link href="http://www.instanceofanobject.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 15 Oct 2015 12:15:15 +0000</pubDate>
-    <lastBuildDate>Thu, 15 Oct 2015 12:15:15 +0000</lastBuildDate>
+    <pubDate>Thu, 15 Oct 2015 20:25:55 +0000</pubDate>
+    <lastBuildDate>Thu, 15 Oct 2015 20:25:55 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -16,7 +16,7 @@
 &lt;p&gt;Countries like &lt;a href=&quot;https://en.wikipedia.org/wiki/Websites_blocked_in_mainland_China&quot;&gt;China block web traffic from certain domains&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;so-what&quot;&gt;So what?&lt;/h2&gt;
-&lt;p&gt;So what if our website depends on some Google API and we don’t want it to break if it’s not availabe?&lt;/p&gt;
+&lt;p&gt;So what if our website depends on some Google API and we don’t want it to break if it’s not available?&lt;/p&gt;
 
 &lt;p&gt;There are two main approaches to try to by-pass this:&lt;/p&gt;
 
@@ -25,7 +25,7 @@
   &lt;li&gt;Same as above but directly querying an IP database&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;These are valid options as long as the IP gets well resolved but nothing actually keeps you from:&lt;/p&gt;
+&lt;p&gt;These are valid options as long as the IP gets well resolved, but nothing actually keeps you from:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;blocking users that might not be affected by the content blockage&lt;/li&gt;
@@ -43,7 +43,7 @@ if Google is available instead by grabbing a resource that is hosted under a Goo
 If we try to access this image from our website and the load fails, then we are sure that the content is blocked!&lt;/p&gt;
 
 &lt;h2 id=&quot;configuring-google-drive&quot;&gt;Configuring Google Drive&lt;/h2&gt;
-&lt;p&gt;You can point to an image shared in Google Drive but there’s a small “trick” that you need to be aware of.&lt;/p&gt;
+&lt;p&gt;You can point to an image shared in Google Drive, but there’s a small “trick” that you need to be aware of.&lt;/p&gt;
 
 &lt;p&gt;By default, a shared image URL looks like the following (fake link):&lt;br /&gt;
 &lt;code&gt;
