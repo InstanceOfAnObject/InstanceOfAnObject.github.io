@@ -32,4 +32,5 @@ cp -avr _site/* ../workspace-master/
 cd ~/workspace-master/
 git add --all
 git commit -m "update site"
+git pull
 git push
