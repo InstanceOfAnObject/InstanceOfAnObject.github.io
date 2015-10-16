@@ -23,6 +23,7 @@ jekyll build
 cd ~/workspace-master
 git checkout master
 rm -rf *
+git ls-files --deleted -z | xargs -0 git rm 
 
 # copy the contents of the dev branch _site dir
 cd ~/workspace
