@@ -273,8 +273,9 @@ In my case I’m using Github pages and it works just fine.<br />
 If Github turns out not to be the best hosting option, moving everything somewhere else requires no additional effort.</p>
 
 <h2 id="plugins">Plugins</h2>
-<p>### Plugins under GitHub Pages
-Due to security restrictions, GitHub only supports a (very) limited number of Jekyll plugins.<br />
+
+<h3 id="plugins-under-github-pages">Plugins under GitHub Pages</h3>
+<p>Due to security restrictions, GitHub only supports a (very) limited number of Jekyll plugins.<br />
 Everything else zou might have in zour _plugins folder will be ignored.</p>
 
 <p>This means that everything works fine on your dev machine but once you deploy do GitHub Pages you’ll loose functionality.<br />
@@ -294,7 +295,16 @@ and that’s it.</li>
 <p>This is a user site. In case you have a repository site, do the same but for the gh-pages branch.</p>
 
 <h3 id="taking-the-most-out-of-tags">Taking the most out of Tags</h3>
-<p>I like to tag my posts</p>
+<p>I like to tag my posts but Jekyll doesn’t support that out of the box.</p>
+
+<p>I found a nice solution for tags on <a href="http://charliepark.org/tags-in-jekyll/">this post</a>.</p>
+
+<p>Knowing that Jekyll performs no operation at runtime other that displaying static HTML, tags are no exception. 
+This means that if you want to filter by a certain tag, the filtered HTML page have to be rendered at build time, not when the user requests it.</p>
+
+<p>This is a big paradigm change for most developers but the end, as there are no db queries to be done, the result is a super fast user experience.</p>
+
+<p><a href="https://github.com/InstanceOfAnObject/InstanceOfAnObject.github.io/blob/dev/_plugins/_tag_gen.rb">Here’s the link to my repository</a></p>
 
 <h2 id="redirecting-old-blogger-urls">Redirecting old Blogger URL’s</h2>
 <p>One thing I absolutely had to support is the redirection from the old Blogger URL structure.<br />
@@ -329,20 +339,26 @@ Basically you just login with your github account, clone to repository and start
 
 <h3 id="start-serving-jekyll-from-c9">Start serving Jekyll from C9</h3>
 <p>To start serving Jekyll locally we usually use: <em>jekyll serve</em><br />
-Under C9 we have to be a bit more specific and specify the host and port:
-<code>bash
+Under C9 we have to be a bit more specific and specify the host and port:</p>
+
+<p><code>bash
 jekyll serve --host $IP --port $PORT --baseurl ''
-</code>
-If it complains that the port 8080 is already in use, chances are that Apache server took it for himself.<br />
-Execute this to make sure:
-<code>bash
+</code></p>
+
+<p>If it complains that the port 8080 is already in use, chances are that Apache server took it for himself.<br />
+Execute this to make sure:</p>
+
+<p><code>bash
 lsof -i:8080
-</code>
-If it’s in fact Apache, execute the following to stop the process:
-<code>bash
+</code></p>
+
+<p>If it’s in fact Apache, execute the following to stop the process:</p>
+
+<p><code>bash
 sudo /etc/init.d/apache2 stop
-</code>
-After this, try starting jekyll again, it will work.</p>
+</code></p>
+
+<p>After this, try starting jekyll again, it will work.</p>
 
   </article>
 

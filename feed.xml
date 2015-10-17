@@ -6,8 +6,8 @@
 </description>
     <link>http://www.instanceofanobject.com/</link>
     <atom:link href="http://www.instanceofanobject.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 16 Oct 2015 08:53:12 +0000</pubDate>
-    <lastBuildDate>Fri, 16 Oct 2015 08:53:12 +0000</lastBuildDate>
+    <pubDate>Sat, 17 Oct 2015 10:32:22 +0000</pubDate>
+    <lastBuildDate>Sat, 17 Oct 2015 10:32:22 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -144,8 +144,9 @@ In my case I’m using Github pages and it works just fine.&lt;br /&gt;
 If Github turns out not to be the best hosting option, moving everything somewhere else requires no additional effort.&lt;/p&gt;
 
 &lt;h2 id=&quot;plugins&quot;&gt;Plugins&lt;/h2&gt;
-&lt;p&gt;### Plugins under GitHub Pages
-Due to security restrictions, GitHub only supports a (very) limited number of Jekyll plugins.&lt;br /&gt;
+
+&lt;h3 id=&quot;plugins-under-github-pages&quot;&gt;Plugins under GitHub Pages&lt;/h3&gt;
+&lt;p&gt;Due to security restrictions, GitHub only supports a (very) limited number of Jekyll plugins.&lt;br /&gt;
 Everything else zou might have in zour _plugins folder will be ignored.&lt;/p&gt;
 
 &lt;p&gt;This means that everything works fine on your dev machine but once you deploy do GitHub Pages you’ll loose functionality.&lt;br /&gt;
@@ -165,7 +166,16 @@ and that’s it.&lt;/li&gt;
 &lt;p&gt;This is a user site. In case you have a repository site, do the same but for the gh-pages branch.&lt;/p&gt;
 
 &lt;h3 id=&quot;taking-the-most-out-of-tags&quot;&gt;Taking the most out of Tags&lt;/h3&gt;
-&lt;p&gt;I like to tag my posts&lt;/p&gt;
+&lt;p&gt;I like to tag my posts but Jekyll doesn’t support that out of the box.&lt;/p&gt;
+
+&lt;p&gt;I found a nice solution for tags on &lt;a href=&quot;http://charliepark.org/tags-in-jekyll/&quot;&gt;this post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Knowing that Jekyll performs no operation at runtime other that displaying static HTML, tags are no exception. 
+This means that if you want to filter by a certain tag, the filtered HTML page have to be rendered at build time, not when the user requests it.&lt;/p&gt;
+
+&lt;p&gt;This is a big paradigm change for most developers but the end, as there are no db queries to be done, the result is a super fast user experience.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/InstanceOfAnObject/InstanceOfAnObject.github.io/blob/dev/_plugins/_tag_gen.rb&quot;&gt;Here’s the link to my repository&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;redirecting-old-blogger-urls&quot;&gt;Redirecting old Blogger URL’s&lt;/h2&gt;
 &lt;p&gt;One thing I absolutely had to support is the redirection from the old Blogger URL structure.&lt;br /&gt;
@@ -200,20 +210,26 @@ Basically you just login with your github account, clone to repository and start
 
 &lt;h3 id=&quot;start-serving-jekyll-from-c9&quot;&gt;Start serving Jekyll from C9&lt;/h3&gt;
 &lt;p&gt;To start serving Jekyll locally we usually use: &lt;em&gt;jekyll serve&lt;/em&gt;&lt;br /&gt;
-Under C9 we have to be a bit more specific and specify the host and port:
-&lt;code&gt;bash
+Under C9 we have to be a bit more specific and specify the host and port:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bash
 jekyll serve --host $IP --port $PORT --baseurl &#39;&#39;
-&lt;/code&gt;
-If it complains that the port 8080 is already in use, chances are that Apache server took it for himself.&lt;br /&gt;
-Execute this to make sure:
-&lt;code&gt;bash
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If it complains that the port 8080 is already in use, chances are that Apache server took it for himself.&lt;br /&gt;
+Execute this to make sure:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bash
 lsof -i:8080
-&lt;/code&gt;
-If it’s in fact Apache, execute the following to stop the process:
-&lt;code&gt;bash
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If it’s in fact Apache, execute the following to stop the process:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bash
 sudo /etc/init.d/apache2 stop
-&lt;/code&gt;
-After this, try starting jekyll again, it will work.&lt;/p&gt;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;After this, try starting jekyll again, it will work.&lt;/p&gt;
 </description>
         <pubDate>Sun, 05 Jul 2015 14:41:08 +0000</pubDate>
         <link>http://www.instanceofanobject.com/blog/2015/07/05/welcome-to-jekyll.html</link>
@@ -249,7 +265,7 @@ After this, try starting jekyll again, it will work.&lt;/p&gt;
 &lt;p&gt;To take this a bit further, you’ll also be able to pass messages and trigger events between IFrames.&lt;/p&gt;
 
 &lt;h2 id=&quot;where-can-this-be-used&quot;&gt;Where can this be used?&lt;/h2&gt;
-&lt;p&gt;The motivation behind this tool was for complex SharePoint Provider Hosted App, but there’s no dependency whatsoever to SharePoint.&lt;/p&gt;
+&lt;p&gt;The motivation behind this tool was for complex SharePoint Provider Hosted App, but there’s no dependency whatsoever with SharePoint.&lt;/p&gt;
 </description>
         <pubDate>Sun, 24 May 2015 00:00:00 +0000</pubDate>
         <link>http://www.instanceofanobject.com/projects/2015/05/24/iframe-orchestrator.html</link>
