@@ -33,6 +33,7 @@ In my case I'm using Github pages and it works just fine.
 If Github turns out not to be the best hosting option, moving everything somewhere else requires no additional effort.
 
 ## Plugins
+
 ### Plugins under GitHub Pages
 Due to security restrictions, GitHub only supports a (very) limited number of Jekyll plugins.  
 Everything else zou might have in zour _plugins folder will be ignored.
@@ -52,7 +53,16 @@ To automate things I've created a deploy.sh bash file in the 'dev' branch.
 This is a user site. In case you have a repository site, do the same but for the gh-pages branch.
 
 ### Taking the most out of Tags
-I like to tag my posts 
+I like to tag my posts but Jekyll doesn't support that out of the box.
+
+I found a nice solution for tags on [this post](http://charliepark.org/tags-in-jekyll/).
+
+Knowing that Jekyll performs no operation at runtime other that displaying static HTML, tags are no exception. 
+This means that if you want to filter by a certain tag, the filtered HTML page have to be rendered at build time, not when the user requests it.  
+
+This is a big paradigm change for most developers but the end, as there are no db queries to be done, the result is a super fast user experience.
+
+[Here's the link to my repository](https://github.com/InstanceOfAnObject/InstanceOfAnObject.github.io/blob/dev/_plugins/_tag_gen.rb)
 
 ## Redirecting old Blogger URL's
 One thing I absolutely had to support is the redirection from the old Blogger URL structure.  
@@ -90,16 +100,22 @@ Here I'll log the issues and solutions I'll be facing.
 ### Start serving Jekyll from C9
 To start serving Jekyll locally we usually use: *jekyll serve*  
 Under C9 we have to be a bit more specific and specify the host and port:
+
 ```bash
 jekyll serve --host $IP --port $PORT --baseurl ''
 ```
+
 If it complains that the port 8080 is already in use, chances are that Apache server took it for himself.  
 Execute this to make sure:
+
 ```bash
 lsof -i:8080
 ```
+
 If it's in fact Apache, execute the following to stop the process:
+
 ```bash
 sudo /etc/init.d/apache2 stop
 ```
+
 After this, try starting jekyll again, it will work.
