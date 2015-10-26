@@ -18,7 +18,7 @@ I'm assuming you've made up your mind and that you already chose your technology
 
 * What skills do I need to have in the team?
 * What should I be aware?
-* From where should I shart?
+* From where should I start?
 * What would be the best approach?
 * How do I estimate the necessary time?
 
