@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Go from Multi-Page to a Single-Page Web App</title>
+  <meta name="description" content="The problemYou have your nice classic multi-page web application and you want to move to the new Single-Page (SPA) paradigm.">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://www.instanceofanobject.com/blog/2015/10/22/from-multi-page-to-single-page.html">
+  <link rel="alternate" type="application/rss+xml" title="Instance Of An Object" href="http://www.instanceofanobject.com/feed.xml" />
+
+  <link rel="stylesheet" href="/assets/images/autreplanete_icons/social_icons/CSS_sprite/css/apico-sprites.css" />
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">
+      <img src="/assets/images/logo/logo-horizontal.png" alt="Instance Of An Object" />  
+    </a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a class="page-link " href="/">Home</a>
+        <a class="page-link selected" href="/blog">Blog</a>
+        <a class="page-link " href="/projects">Projects</a>
+        <a class="page-link " href="/about">About</a>
+        
+          
+          <!-- <a class="page-link" href="/404.html">Page not found</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/about/">About</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/blog/">Blog</a> -->
+          
+        
+          
+        
+          
+        
+          
+        
+          
+          <!-- <a class="page-link" href="/projects/">Projects</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/tools/index.html">Posts Tagged &ldquo;tools&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/c%23/index.html">Posts Tagged &ldquo;c#&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/logging/index.html">Posts Tagged &ldquo;logging&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/log4net/index.html">Posts Tagged &ldquo;log4net&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/nlog/index.html">Posts Tagged &ldquo;nlog&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/sql%20server/index.html">Posts Tagged &ldquo;sql server&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/hardware/index.html">Posts Tagged &ldquo;hardware&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/technology/index.html">Posts Tagged &ldquo;technology&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/browsers/index.html">Posts Tagged &ldquo;browsers&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/chrome/index.html">Posts Tagged &ldquo;chrome&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/windows/index.html">Posts Tagged &ldquo;windows&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/software/index.html">Posts Tagged &ldquo;software&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/css/index.html">Posts Tagged &ldquo;css&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/web%20development/index.html">Posts Tagged &ldquo;web development&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/database/index.html">Posts Tagged &ldquo;database&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/mono%20project/index.html">Posts Tagged &ldquo;mono project&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/android/index.html">Posts Tagged &ldquo;android&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/.net/index.html">Posts Tagged &ldquo;.net&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/entity%20framework/index.html">Posts Tagged &ldquo;entity framework&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/jquery/index.html">Posts Tagged &ldquo;jquery&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/jquery-ui/index.html">Posts Tagged &ldquo;jquery-ui&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/asp.net/index.html">Posts Tagged &ldquo;asp.net&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/javascript/index.html">Posts Tagged &ldquo;javascript&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/json/index.html">Posts Tagged &ldquo;json&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/jqgrid/index.html">Posts Tagged &ldquo;jqgrid&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/t-sql/index.html">Posts Tagged &ldquo;t-sql&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/ajax/index.html">Posts Tagged &ldquo;ajax&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/visual%20studio/index.html">Posts Tagged &ldquo;visual studio&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/tfs/index.html">Posts Tagged &ldquo;tfs&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/macros/index.html">Posts Tagged &ldquo;macros&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/routing/index.html">Posts Tagged &ldquo;routing&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/patterns/index.html">Posts Tagged &ldquo;patterns&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/forms%20authentication/index.html">Posts Tagged &ldquo;forms authentication&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/network/index.html">Posts Tagged &ldquo;network&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/ssrs/index.html">Posts Tagged &ldquo;ssrs&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/reporting/index.html">Posts Tagged &ldquo;reporting&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/jekyll/index.html">Posts Tagged &ldquo;jekyll&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/security/index.html">Posts Tagged &ldquo;security&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/google/index.html">Posts Tagged &ldquo;google&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/angularjs/index.html">Posts Tagged &ldquo;angularjs&rdquo;</a> -->
+          
+        
+          
+          <!-- <a class="page-link" href="/tag/spa/index.html">Posts Tagged &ldquo;spa&rdquo;</a> -->
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Go from Multi-Page to a Single-Page Web App</h1>
+    <div class="post-meta">
+    	Oct 22, 2015
+
+	    <ul class="tag_list">
+	      
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/angularjs">angularjs</a></li>
+	      
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/web development">web development</a></li>
+	      
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/jquery">jquery</a></li>
+	      
+	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/spa">spa</a></li>
+	      
+	    </ul>
+    </div>
+
+  </header>
+
+  <article class="post-content">
+    <h2 id="the-problem">The problem</h2>
+<p>You have your nice classic multi-page web application and you want to move to the new <a href="https://en.wikipedia.org/wiki/Single-page_application">Single-Page (SPA)</a> paradigm.</p>
+
+<p>I’ll leave the why so and why not to “SPA” to another post.
+I’m assuming you’ve made up your mind and that you already chose your technology, lets say <a href="https://angularjs.org/">AngularJS 1.x</a> or <a href="https://angular.io/">AngularJS 2.x</a>, but the you’re still asking yourself:</p>
+
+<ul>
+  <li>What skills do I need to have in the team?</li>
+  <li>What should I be aware?</li>
+  <li>From where should I shart?</li>
+  <li>What would be the best approach?</li>
+  <li>How do I estimate the necessary time?</li>
+</ul>
+
+<p>I’ve been there several times so I’ve decided to share my experience and hopefully save someone else’s time and patience.</p>
+
+<h2 id="train-your-team">Train your team</h2>
+<p>If I would have to choose the most important thing for the success of this migration process I would say: <strong>Train your team!!</strong>.<br />
+Really, I can’t stress this enough.</p>
+
+<p>If your team is not completely aligned regarding knowledge and processes, this will fail, badly.<br />
+The core knowledge needed is not only on AngularJS (or any other framework), you need to have a deep and solid understanding of Javascript itself.</p>
+
+<p>Here’s my preferred list of resources I usually propose to my teams and trainees:</p>
+
+<p><strong>Books</strong></p>
+
+<ul>
+  <li><a href="https://www.manning.com/books/secrets-of-the-javascript-ninja">Secrets of the Javascript Ninja</a></li>
+  <li><a href="http://shop.oreilly.com/product/9780596517748.do">Javascript: The good parts</a></li>
+  <li><a href="http://shop.oreilly.com/product/9780596802806.do">High Performance Javascript</a></li>
+</ul>
+
+<p><strong>Video content</strong><br />
+Search by Angular and Javascript on these sites and you’ll find a lot of awesome material.<br />
+I won’t point to any specific training because they keep putting more up to date content so it’s better if you just search!</p>
+
+<ul>
+  <li><a href="https://app.pluralsight.com/library/">Pluralsight</a></li>
+  <li><a href="https://egghead.io/">Egghead.io</a></li>
+</ul>
+
+<h2 id="define-a-strategy">Define a strategy</h2>
+<p>In everything we do we should define a strategy, even if it’s a shallow one, something is always better than nothing.</p>
+
+<p>In this specific case, is very important that you don’t start changing code all over the place otherwise you’ll end up with an uncontrolled amount of regressions and frustration will kill you.</p>
+
+<p><strong>Do things incrementally</strong> and you’ll even be able to keep adding features to your app along side with this migration process.<br />
+This is a very important selling point when you need to do this migration as part of a technical task and the business sees no real added value upfront.<br />
+It’s very important that you don’t stall the new features implementation flow and keep giving them the added value the product owner requested plus the performance boost and user-friendly features a SPA allows.</p>
+
+<p>Of course, there’s a bit of a compromise here, and you won’t be able to fit as many features in your sprint but don’t stop it completely.</p>
+
+<p>Here’s the approach I like to follow:</p>
+
+<h3 id="phase-1-split-the-controllers">Phase 1: Split the controllers</h3>
+<p>One good way is to keep the single-page paradigm aside at first and migrate the views, one by one to Angular.<br />
+Doing it like this, the pages will keep being delivered by as usual from server-side but all the dynamic elements will be rendered with Angular. The site will keep on working and some views will be Angular others are legacy code and changing views will still trigger a full page refresh.</p>
+
+<h4 id="mvc-in-the-back-end">MVC in the back-end?</h4>
+<p>During this process, you’ll be “forced” to clean-up your server-side controllers and make new ones that return JSON instead of HTML. These will be the AJAX endpoints of you angular service that will handle all the $http requests.
+You’ll end up with one controller method to deliver the HTML view and a bunch of other methods that implement the necessary CRUD.
+I advise to prefix all the CRUD routes with /api/…, this will help you isolate the routes that return JSON from the ones that return HTML.<br />
+No pressure, take your time.
+Meanwhile, new screens and improvements that you have in the pipeline should be done directly in Angular.</p>
+
+<h4 id="no-mvc-in-the-back-end">No MVC in the back-end?</h4>
+<p>If you’re not using MVC on the back-end, the process should be more or less the same as described above anyway with the exception that you might want to use another technology to handle your AJAX requests.</p>
+
+<p>Here are some options depending on your server-side technology:</p>
+
+<ul>
+  <li>.Net Framework: <a href="http://www.asp.net/web-api">Web API</a></li>
+  <li>JAVA: <a href="http://resteasy.jboss.org/">RESTEasy</a></li>
+  <li>PHP: <a href="http://www.slimframework.com/">Slim</a></li>
+  <li>…</li>
+</ul>
+
+<p>The list goes on, and each platform has multiple options; choose your own!</p>
+
+<h3 id="phase-2-start-managing-state-with-angular">Phase 2: Start managing state with Angular</h3>
+<p>This will take you some time to figure out and debug.<br />
+Basically, you’ll need to move all the user state to Angular, more specifically into a separate angular service/factory that will be used by all Angular controllers.<br />
+It’s this mechanism that will allow you later to hit F5 in the browser and still get the needed logged in user information and permissions.<br />
+You achieve this by adding a controller on the server that you can do an AJAX call and retrieve this information.</p>
+
+<h3 id="phase-3-add-ng-route">Phase 3: Add ng-route</h3>
+<p>Once all the views are converted and are able to manage their state, it’s time to add ng-route to the mix.<br />
+It’s not mandatory, but this should ideally be a one shot mission for all views. If all the above is completed, it won’t take you that long.<br />
+What you need to do here is to drop all the controller methods that render HTML leaving only one that delivers the main page.<br />
+Move all your views routing logic to Angular leaving only the API routes on the back-end (if you prefix them like I said above, they will be easy to identify.</p>
+
+<h3 id="phase-4-the-login-page">Phase 4: The login page</h3>
+<p>In all this, I never mentioned the login page and it was on purpose.<br />
+You can leave this one to the end because doing a full page refresh every time you login/logout will be useful to clean up some nasty global and badly written javascript you might have.<br />
+Moving the login page into the single-page paradigm means that you don’t do a form post to login, you do it by ajax request and you need to populate your previously prepared state service (Phase 2).<br />
+You also have to clean this info once you logout or you get a 401 from the server and redirect to the login view.</p>
+
+<h2 id="the-pitfalls-list">The pitfalls list</h2>
+<p>During the process described above, you’ll face a lot of challenges.<br />
+Each time I had to do this exercise I kept aside a list of the problems I encountered and how I solved them.<br />
+Bellow you’ll find this list. I’ll try to keep it up-to-date and you are also welcome to message me if you have other experiences you want to share.</p>
+
+<h3 id="pf1-converting-the-page-javascript-file-into-a-controller">PF1: Converting the page javascript file into a controller</h3>
+<p>Of course, you’re already using javascript in your site, so what should you do with it?</p>
+
+<p>If you already use <a href="http://requirejs.org/">RequireJS</a> or any other <a href="http://requirejs.org/docs/whyamd.html">AMD</a> mechanism then it’s easy because you already have your dependencies and encapsulation figured out.<br />
+Each <a href="http://requirejs.org/">RequireJS</a> module represents either a <a href="https://docs.angularjs.org/guide/controller">Controller</a> or a <a href="https://docs.angularjs.org/guide/services">Factory or Service</a> in the Angular world so all you need is to slightly change the way you declare it.</p>
+
+<p>On the other hand, if you didn’t pay the appropriate attention to the way you handle your Javascript then this will be a harder task.</p>
+
+<p>The time you’ll spend migrating each page into an AngularJS view will greatly depend on how well structured your current Javascript is.</p>
+
+<h3 id="pf2-splitting-code-into-factories">PF2: Splitting code into factories</h3>
+<p>All reusable code should, or better, must be moved into a Factory or Directive.<br />
+Good examples of this are state or data related methods or code for popups that are used in multiple views.</p>
+
+<h3 id="pf3-think-when-its-a-good-idea-to-split-functionalities-into-several-modules">PF3: Think when it’s a good idea to split functionalities into several modules</h3>
+<p>Modules in AngularJS are a great way to encapsulate logic or even to abstract enterprise level logic that can later on be reused in other applications.<br />
+This way you can easily decouple dependencies and reuse the code later on.<br />
+Thinking this ahead is a good idea, it won’t slow you down and will save you big refactorings later.</p>
+
+<h3 id="pf4-be-aware-of-library-version-conflicts">PF4: Be aware of library version conflicts</h3>
+<p>I recall this problem related to jQueryUI based FileUpload widget. We were using this JQueryUI widget that needed a jQueryUI version higher than the rest of our controls.<br />
+I agree this is a bad thing to have as it is, but this was a legacy site and the client had implemented this upload functionality on a separate page and didn’t want to update the other pages.<br />
+All of the sudden, we were overriding one version of JQueryUI with another and breaking the whole site.</p>
+
+<p>Another similar problem I also had with another site was with JQuery itself. Different versions of JQuery were being loaded by different components.</p>
+
+<p>In the Multi-Page world, this is a bad practice but hardly a breaking problem, but as we moved to single-page we had a conflict because the main page itself never changes.</p>
+
+<p>Be aware of this and enforce one single version for your components across the whole application.</p>
+
+<h3 id="pf5-jquery-events-bound-to-the-document">PF5: jQuery events bound to the document</h3>
+<p>This is a JQuery best-practice that will make you lose some time.<br />
+The problem is that, in a multi-page web application, each time you change page, you start on a clean plate.<br />
+In a single-page scenario, the document is always the same, events bound to it will remain there even when the view changes.</p>
+
+<p>If we come to a view the event binds are set, lets say for a click of a button, moving to another page and coming back will make the events to be bound again resulting in multiple event handlers for the same event.</p>
+
+<p><strong>Example:</strong></p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;#btnNext&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span> <span class="p">...</span> <span class="p">});</span></code></pre></div>
+
+<p><strong>Solution:</strong><br />
+Use ng-click and handle your code in the controller. This is the correct way to do it and should always be the preferred solution.</p>
+
+<p>Now there might be cases where you want to just postpone conversion to ng-click so here are some temporary solutions:</p>
+
+<p><strong>Temporary Solution 1</strong><br />
+If the event handler can actually be bound directly to the element… do it.</p>
+
+<p><strong>Temporary Solution 2</strong><br />
+If we need to make a delegate event handler, wrap each view with a div.<br />
+Move the event handlers from the document to this wrapper div.</p>
+
+<p><strong>Temporary Solution 3</strong><br />
+Some times the same view/controller can be used in more than one parent view.<br />
+A good example of this is popups and the correct solution is to wrap them in Directives but, if for some edge reason at the moment you can’t…</p>
+
+<p>In this case we can’t use the main view wrapper div because it’s not always the same, so for these edge cases we remove the handler before adding it again:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">gotoNextPage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> <span class="cm">/* do your stuff */</span> <span class="p">};</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">off</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;#btnNext&#39;</span><span class="p">,</span> <span class="nx">gotoNextPage</span><span class="p">);</span>
+<span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="s1">&#39;#btnNext&#39;</span><span class="p">,</span> <span class="nx">gotoNextPage</span><span class="p">);</span></code></pre></div>
+
+<p><strong>Avoid this and any of the above temporary solutions if you can.</strong></p>
+
+<h3 id="pf6-jquery-based-controlswidgets-will-be-a-pain-in-the-neck">PF6: jQuery based controls/widgets will be a pain in the… neck</h3>
+<p>Most of them will fail to work properly, especially due to event-related problems. Reserve some substantial amount of time for this if you use a lot of these things.
+Honor mentions to DatePicker, Dialog, jqGrid…</p>
+
+<p>A lot of alternatives already exist for most of them and you’ll see that wrapping them yourself with a Directive is also usually not a bad alternative.</p>
+
+<p>So before starting the migration process, identify all your controls that might need to be worked out.<br />
+If you work on them before starting a page migration, you’ll feel much more confident estimating the effort.</p>
+
+<h3 id="pf7-the-login-page-is-still-a-separate-page">PF7: The Login page is still a separate page?</h3>
+<p>This will require a lot of refactoring, rewriting and rethinking.</p>
+
+<p>Here’s a small list of pain-points:</p>
+
+<ul>
+  <li>Hiding the menus and everything else while you’re in the login page</li>
+  <li>Correctly redirecting/refreshing the view when you login/logout</li>
+  <li>Handling the session information when you login/logout and press F5
+    <ul>
+      <li>Rethink everything related to the session data that was being handled server-side like user information, authorization, contextual data, etc…</li>
+    </ul>
+  </li>
+  <li>Security, Some views will need to be requested from the server without security validation
+    <ul>
+      <li>The main change in the paradigm will be that you really need to stop concerning about hiding pages from the user. Your main concern is to secure data, not the HTML and data is still coming and going to the server, secure it there!</li>
+    </ul>
+  </li>
+  <li>Make sure that all the state is rebuilt client-side if the user presses F5.
+    <ul>
+      <li>This often requires a separate AJAX call to get the user extra information based on the cookie that you already have.</li>
+    </ul>
+  </li>
+  <li>Move code into a security factory
+    <ul>
+      <li>Make sure all this code is “grouped” in a single reusable factory that is shared across all views.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pf8-slowly-start-to-get-rid-of-all-jquery-selectors">PF8: Slowly start to get rid of all jQuery selectors</h3>
+<p>This is kind of the end of the line for me. When you have the view fully working but jQuery is still being used inside your Angular Controllers.<br />
+Take the extra time to get rid of them. You should not have any jQuery selector inside a Controller. Either replace them with native Directives and Services or create your own.</p>
+
+<p>Things like <code>$.ajax({})</code> or <code>$('#mybutton').on('click', function(){});</code> must be banned from your code and replaced by <a href="https://docs.angularjs.org/api/ng/service/$http">$http</a> and <a href="https://docs.angularjs.org/api/ngTouch/directive/ngClick">ngClick</a> respectively.</p>
+
+<h2 id="final-notes">Final notes</h2>
+<p>I’m not addressing any migration considerations here specific to <a href="https://angular.io/">Angular 2.0</a> but, apart from syntax changes, the overall considerations remain the same.</p>
+
+<p>This article was based on my personal experience and I’m sure many other challenges are missing here. If you happen to have something to add, please drop me a line and I’ll be happy to enrich this knowledge base.</p>
+
+<p>I’m a regular contributor on <a href="http://www.experts-exchange.com/members/AlexCode.html">Experts-Exchange</a> and recently I’ve also <a href="http://www.experts-exchange.com//questions/28712820/Adopting-AngularJS-in-existing-web-app-Struts-Tomcat.html">answered a question regarding this topic</a>.</p>
+
+
+  </article>
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'instanceofanobject';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Instance Of An Object</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Instance Of An Object</li>
+          <li><a href="mailto:mail@alexcode.com">mail@alexcode.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/InstanceOfAnObject">
+              <span class="apico-color apico-github"></span>GitHub
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/alexcode">
+              <span class="apico-color apico-twitter"></span>Twitter
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <!-- <div class="footer-col  footer-col-3">
+        <p class="text">Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+</p>
+      </div> -->
+    </div>
+
+  </div>
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68037427-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</footer>
+
+
+  </body>
+
+</html>

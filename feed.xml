@@ -6,9 +6,249 @@
 </description>
     <link>http://www.instanceofanobject.com/</link>
     <atom:link href="http://www.instanceofanobject.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 17 Oct 2015 10:32:22 +0000</pubDate>
-    <lastBuildDate>Sat, 17 Oct 2015 10:32:22 +0000</lastBuildDate>
+    <pubDate>Mon, 26 Oct 2015 10:53:13 +0000</pubDate>
+    <lastBuildDate>Mon, 26 Oct 2015 10:53:13 +0000</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Go from Multi-Page to a Single-Page Web App</title>
+        <description>&lt;h2 id=&quot;the-problem&quot;&gt;The problem&lt;/h2&gt;
+&lt;p&gt;You have your nice classic multi-page web application and you want to move to the new &lt;a href=&quot;https://en.wikipedia.org/wiki/Single-page_application&quot;&gt;Single-Page (SPA)&lt;/a&gt; paradigm.&lt;/p&gt;
+
+&lt;p&gt;I’ll leave the why so and why not to “SPA” to another post.
+I’m assuming you’ve made up your mind and that you already chose your technology, lets say &lt;a href=&quot;https://angularjs.org/&quot;&gt;AngularJS 1.x&lt;/a&gt; or &lt;a href=&quot;https://angular.io/&quot;&gt;AngularJS 2.x&lt;/a&gt;, but the you’re still asking yourself:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;What skills do I need to have in the team?&lt;/li&gt;
+  &lt;li&gt;What should I be aware?&lt;/li&gt;
+  &lt;li&gt;From where should I shart?&lt;/li&gt;
+  &lt;li&gt;What would be the best approach?&lt;/li&gt;
+  &lt;li&gt;How do I estimate the necessary time?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’ve been there several times so I’ve decided to share my experience and hopefully save someone else’s time and patience.&lt;/p&gt;
+
+&lt;h2 id=&quot;train-your-team&quot;&gt;Train your team&lt;/h2&gt;
+&lt;p&gt;If I would have to choose the most important thing for the success of this migration process I would say: &lt;strong&gt;Train your team!!&lt;/strong&gt;.&lt;br /&gt;
+Really, I can’t stress this enough.&lt;/p&gt;
+
+&lt;p&gt;If your team is not completely aligned regarding knowledge and processes, this will fail, badly.&lt;br /&gt;
+The core knowledge needed is not only on AngularJS (or any other framework), you need to have a deep and solid understanding of Javascript itself.&lt;/p&gt;
+
+&lt;p&gt;Here’s my preferred list of resources I usually propose to my teams and trainees:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Books&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.manning.com/books/secrets-of-the-javascript-ninja&quot;&gt;Secrets of the Javascript Ninja&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9780596517748.do&quot;&gt;Javascript: The good parts&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://shop.oreilly.com/product/9780596802806.do&quot;&gt;High Performance Javascript&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Video content&lt;/strong&gt;&lt;br /&gt;
+Search by Angular and Javascript on these sites and you’ll find a lot of awesome material.&lt;br /&gt;
+I won’t point to any specific training because they keep putting more up to date content so it’s better if you just search!&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://app.pluralsight.com/library/&quot;&gt;Pluralsight&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://egghead.io/&quot;&gt;Egghead.io&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;define-a-strategy&quot;&gt;Define a strategy&lt;/h2&gt;
+&lt;p&gt;In everything we do we should define a strategy, even if it’s a shallow one, something is always better than nothing.&lt;/p&gt;
+
+&lt;p&gt;In this specific case, is very important that you don’t start changing code all over the place otherwise you’ll end up with an uncontrolled amount of regressions and frustration will kill you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Do things incrementally&lt;/strong&gt; and you’ll even be able to keep adding features to your app along side with this migration process.&lt;br /&gt;
+This is a very important selling point when you need to do this migration as part of a technical task and the business sees no real added value upfront.&lt;br /&gt;
+It’s very important that you don’t stall the new features implementation flow and keep giving them the added value the product owner requested plus the performance boost and user-friendly features a SPA allows.&lt;/p&gt;
+
+&lt;p&gt;Of course, there’s a bit of a compromise here, and you won’t be able to fit as many features in your sprint but don’t stop it completely.&lt;/p&gt;
+
+&lt;p&gt;Here’s the approach I like to follow:&lt;/p&gt;
+
+&lt;h3 id=&quot;phase-1-split-the-controllers&quot;&gt;Phase 1: Split the controllers&lt;/h3&gt;
+&lt;p&gt;One good way is to keep the single-page paradigm aside at first and migrate the views, one by one to Angular.&lt;br /&gt;
+Doing it like this, the pages will keep being delivered by as usual from server-side but all the dynamic elements will be rendered with Angular. The site will keep on working and some views will be Angular others are legacy code and changing views will still trigger a full page refresh.&lt;/p&gt;
+
+&lt;h4 id=&quot;mvc-in-the-back-end&quot;&gt;MVC in the back-end?&lt;/h4&gt;
+&lt;p&gt;During this process, you’ll be “forced” to clean-up your server-side controllers and make new ones that return JSON instead of HTML. These will be the AJAX endpoints of you angular service that will handle all the $http requests.
+You’ll end up with one controller method to deliver the HTML view and a bunch of other methods that implement the necessary CRUD.
+I advise to prefix all the CRUD routes with /api/…, this will help you isolate the routes that return JSON from the ones that return HTML.&lt;br /&gt;
+No pressure, take your time.
+Meanwhile, new screens and improvements that you have in the pipeline should be done directly in Angular.&lt;/p&gt;
+
+&lt;h4 id=&quot;no-mvc-in-the-back-end&quot;&gt;No MVC in the back-end?&lt;/h4&gt;
+&lt;p&gt;If you’re not using MVC on the back-end, the process should be more or less the same as described above anyway with the exception that you might want to use another technology to handle your AJAX requests.&lt;/p&gt;
+
+&lt;p&gt;Here are some options depending on your server-side technology:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;.Net Framework: &lt;a href=&quot;http://www.asp.net/web-api&quot;&gt;Web API&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;JAVA: &lt;a href=&quot;http://resteasy.jboss.org/&quot;&gt;RESTEasy&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;PHP: &lt;a href=&quot;http://www.slimframework.com/&quot;&gt;Slim&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The list goes on, and each platform has multiple options; choose your own!&lt;/p&gt;
+
+&lt;h3 id=&quot;phase-2-start-managing-state-with-angular&quot;&gt;Phase 2: Start managing state with Angular&lt;/h3&gt;
+&lt;p&gt;This will take you some time to figure out and debug.&lt;br /&gt;
+Basically, you’ll need to move all the user state to Angular, more specifically into a separate angular service/factory that will be used by all Angular controllers.&lt;br /&gt;
+It’s this mechanism that will allow you later to hit F5 in the browser and still get the needed logged in user information and permissions.&lt;br /&gt;
+You achieve this by adding a controller on the server that you can do an AJAX call and retrieve this information.&lt;/p&gt;
+
+&lt;h3 id=&quot;phase-3-add-ng-route&quot;&gt;Phase 3: Add ng-route&lt;/h3&gt;
+&lt;p&gt;Once all the views are converted and are able to manage their state, it’s time to add ng-route to the mix.&lt;br /&gt;
+It’s not mandatory, but this should ideally be a one shot mission for all views. If all the above is completed, it won’t take you that long.&lt;br /&gt;
+What you need to do here is to drop all the controller methods that render HTML leaving only one that delivers the main page.&lt;br /&gt;
+Move all your views routing logic to Angular leaving only the API routes on the back-end (if you prefix them like I said above, they will be easy to identify.&lt;/p&gt;
+
+&lt;h3 id=&quot;phase-4-the-login-page&quot;&gt;Phase 4: The login page&lt;/h3&gt;
+&lt;p&gt;In all this, I never mentioned the login page and it was on purpose.&lt;br /&gt;
+You can leave this one to the end because doing a full page refresh every time you login/logout will be useful to clean up some nasty global and badly written javascript you might have.&lt;br /&gt;
+Moving the login page into the single-page paradigm means that you don’t do a form post to login, you do it by ajax request and you need to populate your previously prepared state service (Phase 2).&lt;br /&gt;
+You also have to clean this info once you logout or you get a 401 from the server and redirect to the login view.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-pitfalls-list&quot;&gt;The pitfalls list&lt;/h2&gt;
+&lt;p&gt;During the process described above, you’ll face a lot of challenges.&lt;br /&gt;
+Each time I had to do this exercise I kept aside a list of the problems I encountered and how I solved them.&lt;br /&gt;
+Bellow you’ll find this list. I’ll try to keep it up-to-date and you are also welcome to message me if you have other experiences you want to share.&lt;/p&gt;
+
+&lt;h3 id=&quot;pf1-converting-the-page-javascript-file-into-a-controller&quot;&gt;PF1: Converting the page javascript file into a controller&lt;/h3&gt;
+&lt;p&gt;Of course, you’re already using javascript in your site, so what should you do with it?&lt;/p&gt;
+
+&lt;p&gt;If you already use &lt;a href=&quot;http://requirejs.org/&quot;&gt;RequireJS&lt;/a&gt; or any other &lt;a href=&quot;http://requirejs.org/docs/whyamd.html&quot;&gt;AMD&lt;/a&gt; mechanism then it’s easy because you already have your dependencies and encapsulation figured out.&lt;br /&gt;
+Each &lt;a href=&quot;http://requirejs.org/&quot;&gt;RequireJS&lt;/a&gt; module represents either a &lt;a href=&quot;https://docs.angularjs.org/guide/controller&quot;&gt;Controller&lt;/a&gt; or a &lt;a href=&quot;https://docs.angularjs.org/guide/services&quot;&gt;Factory or Service&lt;/a&gt; in the Angular world so all you need is to slightly change the way you declare it.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, if you didn’t pay the appropriate attention to the way you handle your Javascript then this will be a harder task.&lt;/p&gt;
+
+&lt;p&gt;The time you’ll spend migrating each page into an AngularJS view will greatly depend on how well structured your current Javascript is.&lt;/p&gt;
+
+&lt;h3 id=&quot;pf2-splitting-code-into-factories&quot;&gt;PF2: Splitting code into factories&lt;/h3&gt;
+&lt;p&gt;All reusable code should, or better, must be moved into a Factory or Directive.&lt;br /&gt;
+Good examples of this are state or data related methods or code for popups that are used in multiple views.&lt;/p&gt;
+
+&lt;h3 id=&quot;pf3-think-when-its-a-good-idea-to-split-functionalities-into-several-modules&quot;&gt;PF3: Think when it’s a good idea to split functionalities into several modules&lt;/h3&gt;
+&lt;p&gt;Modules in AngularJS are a great way to encapsulate logic or even to abstract enterprise level logic that can later on be reused in other applications.&lt;br /&gt;
+This way you can easily decouple dependencies and reuse the code later on.&lt;br /&gt;
+Thinking this ahead is a good idea, it won’t slow you down and will save you big refactorings later.&lt;/p&gt;
+
+&lt;h3 id=&quot;pf4-be-aware-of-library-version-conflicts&quot;&gt;PF4: Be aware of library version conflicts&lt;/h3&gt;
+&lt;p&gt;I recall this problem related to jQueryUI based FileUpload widget. We were using this JQueryUI widget that needed a jQueryUI version higher than the rest of our controls.&lt;br /&gt;
+I agree this is a bad thing to have as it is, but this was a legacy site and the client had implemented this upload functionality on a separate page and didn’t want to update the other pages.&lt;br /&gt;
+All of the sudden, we were overriding one version of JQueryUI with another and breaking the whole site.&lt;/p&gt;
+
+&lt;p&gt;Another similar problem I also had with another site was with JQuery itself. Different versions of JQuery were being loaded by different components.&lt;/p&gt;
+
+&lt;p&gt;In the Multi-Page world, this is a bad practice but hardly a breaking problem, but as we moved to single-page we had a conflict because the main page itself never changes.&lt;/p&gt;
+
+&lt;p&gt;Be aware of this and enforce one single version for your components across the whole application.&lt;/p&gt;
+
+&lt;h3 id=&quot;pf5-jquery-events-bound-to-the-document&quot;&gt;PF5: jQuery events bound to the document&lt;/h3&gt;
+&lt;p&gt;This is a JQuery best-practice that will make you lose some time.&lt;br /&gt;
+The problem is that, in a multi-page web application, each time you change page, you start on a clean plate.&lt;br /&gt;
+In a single-page scenario, the document is always the same, events bound to it will remain there even when the view changes.&lt;/p&gt;
+
+&lt;p&gt;If we come to a view the event binds are set, lets say for a click of a button, moving to another page and coming back will make the events to be bound again resulting in multiple event handlers for the same event.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#btnNext&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution:&lt;/strong&gt;&lt;br /&gt;
+Use ng-click and handle your code in the controller. This is the correct way to do it and should always be the preferred solution.&lt;/p&gt;
+
+&lt;p&gt;Now there might be cases where you want to just postpone conversion to ng-click so here are some temporary solutions:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Temporary Solution 1&lt;/strong&gt;&lt;br /&gt;
+If the event handler can actually be bound directly to the element… do it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Temporary Solution 2&lt;/strong&gt;&lt;br /&gt;
+If we need to make a delegate event handler, wrap each view with a div.&lt;br /&gt;
+Move the event handlers from the document to this wrapper div.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Temporary Solution 3&lt;/strong&gt;&lt;br /&gt;
+Some times the same view/controller can be used in more than one parent view.&lt;br /&gt;
+A good example of this is popups and the correct solution is to wrap them in Directives but, if for some edge reason at the moment you can’t…&lt;/p&gt;
+
+&lt;p&gt;In this case we can’t use the main view wrapper div because it’s not always the same, so for these edge cases we remove the handler before adding it again:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gotoNextPage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt; &lt;span class=&quot;cm&quot;&gt;/* do your stuff */&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;off&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#btnNext&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gotoNextPage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;#btnNext&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;gotoNextPage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Avoid this and any of the above temporary solutions if you can.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;pf6-jquery-based-controlswidgets-will-be-a-pain-in-the-neck&quot;&gt;PF6: jQuery based controls/widgets will be a pain in the… neck&lt;/h3&gt;
+&lt;p&gt;Most of them will fail to work properly, especially due to event-related problems. Reserve some substantial amount of time for this if you use a lot of these things.
+Honor mentions to DatePicker, Dialog, jqGrid…&lt;/p&gt;
+
+&lt;p&gt;A lot of alternatives already exist for most of them and you’ll see that wrapping them yourself with a Directive is also usually not a bad alternative.&lt;/p&gt;
+
+&lt;p&gt;So before starting the migration process, identify all your controls that might need to be worked out.&lt;br /&gt;
+If you work on them before starting a page migration, you’ll feel much more confident estimating the effort.&lt;/p&gt;
+
+&lt;h3 id=&quot;pf7-the-login-page-is-still-a-separate-page&quot;&gt;PF7: The Login page is still a separate page?&lt;/h3&gt;
+&lt;p&gt;This will require a lot of refactoring, rewriting and rethinking.&lt;/p&gt;
+
+&lt;p&gt;Here’s a small list of pain-points:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Hiding the menus and everything else while you’re in the login page&lt;/li&gt;
+  &lt;li&gt;Correctly redirecting/refreshing the view when you login/logout&lt;/li&gt;
+  &lt;li&gt;Handling the session information when you login/logout and press F5
+    &lt;ul&gt;
+      &lt;li&gt;Rethink everything related to the session data that was being handled server-side like user information, authorization, contextual data, etc…&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Security, Some views will need to be requested from the server without security validation
+    &lt;ul&gt;
+      &lt;li&gt;The main change in the paradigm will be that you really need to stop concerning about hiding pages from the user. Your main concern is to secure data, not the HTML and data is still coming and going to the server, secure it there!&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Make sure that all the state is rebuilt client-side if the user presses F5.
+    &lt;ul&gt;
+      &lt;li&gt;This often requires a separate AJAX call to get the user extra information based on the cookie that you already have.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Move code into a security factory
+    &lt;ul&gt;
+      &lt;li&gt;Make sure all this code is “grouped” in a single reusable factory that is shared across all views.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;pf8-slowly-start-to-get-rid-of-all-jquery-selectors&quot;&gt;PF8: Slowly start to get rid of all jQuery selectors&lt;/h3&gt;
+&lt;p&gt;This is kind of the end of the line for me. When you have the view fully working but jQuery is still being used inside your Angular Controllers.&lt;br /&gt;
+Take the extra time to get rid of them. You should not have any jQuery selector inside a Controller. Either replace them with native Directives and Services or create your own.&lt;/p&gt;
+
+&lt;p&gt;Things like &lt;code&gt;$.ajax({})&lt;/code&gt; or &lt;code&gt;$(&#39;#mybutton&#39;).on(&#39;click&#39;, function(){});&lt;/code&gt; must be banned from your code and replaced by &lt;a href=&quot;https://docs.angularjs.org/api/ng/service/$http&quot;&gt;$http&lt;/a&gt; and &lt;a href=&quot;https://docs.angularjs.org/api/ngTouch/directive/ngClick&quot;&gt;ngClick&lt;/a&gt; respectively.&lt;/p&gt;
+
+&lt;h2 id=&quot;final-notes&quot;&gt;Final notes&lt;/h2&gt;
+&lt;p&gt;I’m not addressing any migration considerations here specific to &lt;a href=&quot;https://angular.io/&quot;&gt;Angular 2.0&lt;/a&gt; but, apart from syntax changes, the overall considerations remain the same.&lt;/p&gt;
+
+&lt;p&gt;This article was based on my personal experience and I’m sure many other challenges are missing here. If you happen to have something to add, please drop me a line and I’ll be happy to enrich this knowledge base.&lt;/p&gt;
+
+&lt;p&gt;I’m a regular contributor on &lt;a href=&quot;http://www.experts-exchange.com/members/AlexCode.html&quot;&gt;Experts-Exchange&lt;/a&gt; and recently I’ve also &lt;a href=&quot;http://www.experts-exchange.com//questions/28712820/Adopting-AngularJS-in-existing-web-app-Struts-Tomcat.html&quot;&gt;answered a question regarding this topic&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 22 Oct 2015 00:00:00 +0000</pubDate>
+        <link>http://www.instanceofanobject.com/blog/2015/10/22/from-multi-page-to-single-page.html</link>
+        <guid isPermaLink="true">http://www.instanceofanobject.com/blog/2015/10/22/from-multi-page-to-single-page.html</guid>
+        
+        <category>angularjs</category>
+        
+        <category>web development</category>
+        
+        <category>jquery</category>
+        
+        <category>spa</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>Verify country Google block</title>
@@ -691,35 +931,6 @@ Please send me your requests and desires, I’ll do my best to implement them.&l
         <pubDate>Sat, 24 Mar 2012 01:09:00 +0000</pubDate>
         <link>http://www.instanceofanobject.com/blog/2012/03/24/advanced-generic-handler-ashx.html</link>
         <guid isPermaLink="true">http://www.instanceofanobject.com/blog/2012/03/24/advanced-generic-handler-ashx.html</guid>
-        
-        <category>web development</category>
-        
-        <category>asp.net</category>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>ASP.Net Routing Vs ScriptManager</title>
-        <description>&lt;p&gt;Recently I had a problem with ScriptManager on a WebForms site where I was also using the ScriptManager.&lt;/p&gt;
-
-&lt;p&gt;Suddenly my ASP.net validators stopped working client-side and on Firebug I could read this error:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ASP.NET Ajax Client-Side Framework Failed To Load&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Crap… what am I doing wrong here!?&lt;/p&gt;
-
-&lt;p&gt;It seems that Rounting messes with the .axd files script manager generates so we only need to tell the routing to ignore those:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-csharp&quot; data-lang=&quot;csharp&quot;&gt;&lt;span class=&quot;n&quot;&gt;routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Ignore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;{resource}.axd/{*pathInfo}&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Done!!&lt;/p&gt;
-</description>
-        <pubDate>Sun, 22 Jan 2012 15:57:00 +0000</pubDate>
-        <link>http://www.instanceofanobject.com/blog/2012/01/22/aspnet-routing-vs-scriptmanager.html</link>
-        <guid isPermaLink="true">http://www.instanceofanobject.com/blog/2012/01/22/aspnet-routing-vs-scriptmanager.html</guid>
         
         <category>web development</category>
         

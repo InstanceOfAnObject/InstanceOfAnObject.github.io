@@ -6,11 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Identify If Type Is Nullable And Get Its Undelying Type</title>
-  <meta name="description" content="Identifying if a type is nullable and getting its underlying (not nullable) type is something no one needs constantly but when we do it’s not trivial to get ...">
+  <title>Posts Tagged &ldquo;spa&rdquo;</title>
+  <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://www.instanceofanobject.com/blog/2011/04/18/identify-if-type-is-nullable-and-get-underlying-type.html">
+  <link rel="canonical" href="http://www.instanceofanobject.com/tag/spa/">
   <link rel="alternate" type="application/rss+xml" title="Instance Of An Object" href="http://www.instanceofanobject.com/feed.xml" />
 
   <link rel="stylesheet" href="/assets/images/autreplanete_icons/social_icons/CSS_sprite/css/apico-sprites.css" />
@@ -38,7 +39,7 @@
 
       <div class="trigger">
         <a class="page-link " href="/">Home</a>
-        <a class="page-link selected" href="/blog">Blog</a>
+        <a class="page-link " href="/blog">Blog</a>
         <a class="page-link " href="/projects">Projects</a>
         <a class="page-link " href="/about">About</a>
         
@@ -238,70 +239,316 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="post">
-
-  <header class="post-header">
-    <h1 class="post-title">Identify If Type Is Nullable And Get Its Undelying Type</h1>
-    <div class="post-meta">
-    	Apr 18, 2011
-
-	    <ul class="tag_list">
-	      
-	      <li class="inline archive_list"><a class="tag_list_link" href="/tag/c#">c#</a></li>
-	      
-	    </ul>
-    </div>
-
-  </header>
-
-  <article class="post-content">
-    <p>Identifying if a type is nullable and getting its underlying (not nullable) type is something no one needs constantly but when we do it’s not trivial to get just from intellisense.<br />
-<br />
-There is no IsNullable property in System.Type so we need to understand a bit how thing work.<br /></p>
-
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Type</span> <span class="n">myType</span> <span class="p">=</span> <span class="p">(</span><span class="n">Guid</span><span class="p">?).</span><span class="n">GetType</span><span class="p">();</span> <span class="c1">// dummy type for this example</span></code></pre></div>
-
-<h2>For short:</h2>
-
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">Type</span> <span class="n">myBaseType</span> <span class="p">=</span> <span class="n">Nullable</span><span class="p">.</span><span class="n">GetUnderlyingType</span><span class="p">(</span><span class="n">myType</span><span class="p">)</span> <span class="p">??</span> <span class="n">myType</span><span class="p">;</span></code></pre></div>
-
-<h2>If you need a bit more information:</h2>
-
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="n">myType</span><span class="p">.</span><span class="n">IsGenericType</span><span class="p">();</span>
-<span class="n">myType</span><span class="p">.</span><span class="n">GetGenericTypeDefinition</span><span class="p">()</span> <span class="p">==</span> <span class="k">typeof</span><span class="p">(</span><span class="n">Nullable</span><span class="p">&lt;&gt;)</span>  
-<span class="n">myType</span><span class="p">.</span><span class="n">GetGenericArguments</span><span class="p">()[</span><span class="m">0</span><span class="p">]</span></code></pre></div>
-
-<h2>The Long story:</h2>
-<p>The basic idea of a nullable type is that it is a type wrapped in the generic type NULLABLE&lt;&gt;.<br />
-So to know if a type is nullable we need to:<br /></p>
-<ul><li>Evaluate if the type is generic</li>
-<li>Being generic, lets check if it's Nullable&lt;&gt;</li>
-<li>If so, get its first generic argument that holds the base type.<br />
-<ul><li>If you run a QuickWatch on a nullable Guid? type you'll get something like: <br />
-System.Nullable`1[System.Guid] <br />
-System.Nullable`1[] is the way .net serializes NULLABLE&lt;&gt; <br />
-The value within [] is its undelying type we're looking for.</li>
-</ul></li>
-</ul>
-
-  </article>
-
-  <div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'instanceofanobject';
+        <h2 class="post_title">Posts Tagged &ldquo;spa&rdquo;</h2>
+<ul class="post-list">
+  
     
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-
-</div>
-
+      
+    
+      
+    
+      
+    
+      
+        <li style="overflow: hidden;">
+  
+  <div class="postCalendar" style="float: left; margin-right: 1em;"> 
+    <em>2015</em>
+    <strong>Oct</strong>
+    <span>22</span>
+  </div>
+    
+  <div style="margin-left: 75px;">
+    <h2>
+      <a class="post-link" href="/blog/2015/10/22/from-multi-page-to-single-page.html">Go from Multi-Page to a Single-Page Web App</a>
+    </h2>
+    
+    <ul class="tag_list" style="margin-top: -15px; font-size: .8em;">
+      
+      <li class="inline archive_list"><a class="tag_list_link" href="/tag/angularjs">angularjs</a></li>
+      
+      <li class="inline archive_list"><a class="tag_list_link" href="/tag/web development">web development</a></li>
+      
+      <li class="inline archive_list"><a class="tag_list_link" href="/tag/jquery">jquery</a></li>
+      
+      <li class="inline archive_list"><a class="tag_list_link" href="/tag/spa">spa</a></li>
+      
+    </ul>
+    
+  </div>
+</li>
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+      
+    
+      
+    
+  
+    
+      
+    
+  
+</ul>
       </div>
     </div>
 
