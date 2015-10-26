@@ -14,7 +14,7 @@ tags:
 You have your nice classic multi-page web application and you want to move to the new [Single-Page (SPA)](https://en.wikipedia.org/wiki/Single-page_application) paradigm.
 
 I'll leave the why so and why not to "SPA" to another post.
-I'm assuming you've made up your mind and that you already chose your technology, lets say [AngularJS 1.x](https://angularjs.org/) or [AngularJS 2.x](https://angular.io/), but the you're still asking yourself:
+I'm assuming you've made up your mind and that you already chose your technology, lets say [AngularJS 1.x](https://angularjs.org/) or [AngularJS 2.x](https://angular.io/), but you're still asking yourself:
 
 * What skills do I need to have in the team?
 * What should I be aware?
