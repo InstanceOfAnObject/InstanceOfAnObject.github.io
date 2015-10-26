@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Migrate from Multi-Page to Single-Page Web App"
+title: "Go from Multi-Page to a Single-Page Web App"
 date:   2015-10-22 00:00:00
 categories: blog
 tags:
@@ -11,9 +11,10 @@ tags:
 ---
 
 ## The problem
-You have your nice classic multi-page web application and you want to move to the new Single-Page (SPA) paradigm.
+You have your nice classic multi-page web application and you want to move to the new [Single-Page (SPA)](https://en.wikipedia.org/wiki/Single-page_application) paradigm.
 
-You chose your technology already, lets say AngularJS, but the you ask yourself:
+I'll leave the why so and why not to "SPA" to another post.
+I'm assuming you've made up your mind and that you already chose your technology, lets say [AngularJS 1.x](https://angularjs.org/) or [AngularJS 2.x](https://angular.io/), but the you're still asking yourself:
 
 * What skills do I need to have in the team?
 * What should I be aware?
@@ -30,7 +31,7 @@ Really, I can't stress this enough.
 If your team is not completely aligned regarding knowledge and processes, this will fail, badly.  
 The core knowledge needed is not only on AngularJS (or any other framework), you need to have a deep and solid understanding of Javascript itself.
 
-Here's my prefered list of resources I usually propose to my teams and trainees:
+Here's my preferred list of resources I usually propose to my teams and trainees:
 
 **Books**
 
@@ -96,7 +97,7 @@ Move all your views routing logic to Angular leaving only the API routes on the 
 ### Phase 4: The login page
 In all this, I never mentioned the login page and it was on purpose.  
 You can leave this one to the end because doing a full page refresh every time you login/logout will be useful to clean up some nasty global and badly written javascript you might have.  
-Moving the login page into the single-page paradigm means that you don't do a form post to login, you do it by ajax request and you need to populate your previously done state service (Step 2).  
+Moving the login page into the single-page paradigm means that you don't do a form post to login, you do it by ajax request and you need to populate your previously prepared state service (Phase 2).  
 You also have to clean this info once you logout or you get a 401 from the server and redirect to the login view.  
 
 
@@ -160,7 +161,9 @@ If we need to make a delegate event handler, wrap each view with a div.
 Move the event handlers from the document to this wrapper div.
 
 **Temporary Solution 3**  
-Some times the same view/controller can be used in more than one parent view. A good example of this is popups.  
+Some times the same view/controller can be used in more than one parent view.  
+A good example of this is popups and the correct solution is to wrap them in Directives but, if for some edge reason at the moment you can't...
+
 In this case we can't use the main view wrapper div because it's not always the same, so for these edge cases we remove the handler before adding it again:
 
 {% highlight javascript %}
@@ -168,6 +171,8 @@ var gotoNextPage = function(){ /* do your stuff */ };
 $(document).off('click', '#btnNext', gotoNextPage);
 $(document).on('click', '#btnNext', gotoNextPage);
 {% endhighlight %}
+
+__Avoid this and any of the above temporary solutions if you can.__
 
 ### PF6: jQuery based controls/widgets will be a pain in the... neck
 Most of them will fail to work properly, especially due to event-related problems. Reserve some substantial amount of time for this if you use a lot of these things.
